@@ -1,6 +1,10 @@
+import Header from "./Header";
+
+
 function HeroHome() {
     return (
         <section className="">
+            <Header />
             <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
                 {/* Hero content */}
                 <div className="relative pt-32 pb-10 md:pt-40 md:pb-16">
