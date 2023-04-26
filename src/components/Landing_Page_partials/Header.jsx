@@ -1,4 +1,6 @@
 import { useRouter } from "next/router";
+import { FaArrowRight } from "react-icons/fa";
+
 
 function Header() {
     const router = useRouter();
@@ -19,6 +21,8 @@ function Header() {
                                     className="btn-sm text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] ml-3 cursor-pointer"
                                 >
                                     Go To Events
+                                    <FaArrowRight />
+                                    
                                 </a>
                             </li>
                         </ul>

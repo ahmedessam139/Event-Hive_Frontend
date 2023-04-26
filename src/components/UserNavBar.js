@@ -1,8 +1,9 @@
 import UserDropdown from "@/components/UserDropdown";
 import { getUserToken } from "@/utils/getUserToken";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+//add FaSignInAlt and FaKey
+import { FaSignInAlt, FaKey } from "react-icons/fa";
 
 export default function NavBar() {
     const router = useRouter();
@@ -69,11 +70,13 @@ export default function NavBar() {
                         <div>
                           <a href="/auth/signin" className="btn text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full mb-4 sm:w-auto sm:mb-0">
                             Signin
+                            <FaSignInAlt/>
                           </a>
                         </div>
                         <div>
                           <a href="/auth/signup" className="btn text-white bg-[color:var(--gray-color)] hover:bg-[color:var(--light-gray)] w-full sm:w-auto sm:ml-4">
                             Signup
+                            <FaKey/>
                           </a>
                         </div>
                       </div>
