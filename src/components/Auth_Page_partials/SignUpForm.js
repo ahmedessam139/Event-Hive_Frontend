@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaKey } from 'react-icons/fa';
+
 
 import Head from 'next/head';
 
@@ -26,7 +27,7 @@ function SignUpForm({}) {
 
     return(
         <form onSubmit={handleSubmit}>
-                    <h1 className="text-2xl font-bold mb-6 text-[color:var(--darker-secondary-color)] ">Sign Up</h1>
+                    <h1 className="text-2xl font-bold mb-6 text-[color:var(--darker-secondary-color)] ">Sign Up <FaKey className="inline-block " /></h1>
                     <div className="mb-4">
                         <label htmlFor="fullName" className="block text-gray-600 font-bold mb-2">Full Name</label>
                         <input type="text" id="fullName" name="fullName" className="filterInput text-gray-600" value={fullName} onChange={handleFullNameChange} placeholder="Your full name" required />
@@ -53,7 +54,7 @@ function SignUpForm({}) {
                         </div>
                     </div>
                     <button type="submit" className="btn text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full mb-4 sm:w-auto sm:mb-0">
-                        Sign Up
+                        Sign Up<FaKey className="inline-block " />
                     </button>
                     <br />
                     <br />

@@ -1,9 +1,9 @@
 import Dashboard_Filter from "@/components/Dashboard_Filter";
 import Popup_Filter from "@/components/Popup_Filter";
 import UserNavBar from "@/components/UserNavBar";
-import EventsContainer from "@/components/Home_Page_partials/Events_Container";
+import EventsContainer from "@/components/Home_Page_partials/EventsContainer";
 import { useEffect, useState } from "react";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { FaFilter } from "react-icons/fa";
 
 function Home() {
     // const router = useRouter();
@@ -173,7 +173,7 @@ function Home() {
                         {/* Render the main content of the dashboard */}
                         <div className="flex w-full md:w-3/4 mx-auto justify-between container">
                             <div className="p-4 overflow-y-auto w-full h-[calc(80vh)]">
-                                <h1 className="text-2xl text-[color:var(--darker-secondary-color)] ml-10">  Events</h1>
+                                <h1 className="text-2xl text-[color:var(--darker-secondary-color)] ml-10 mb-5">  Events</h1>
                                 <EventsContainer filteredEvents={filteredEvents} />
                             </div>
                         </div>
@@ -185,7 +185,7 @@ function Home() {
                                 className="md:hidden flex items-center justify-center w-[4rem] h-[4rem] text-white rounded-full bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] hover:scale-105 shadow-lg cursor-pointer transition-all ease-in-out focus:outline-none"
                                 title="Filter Events"
                             >
-                                <RxHamburgerMenu className="w-6 h-6" />
+                                <FaFilter className="w-6 h-6" />
                             </button>
                         </div>
                     </div>

@@ -57,9 +57,7 @@ function EventPage() {
             <div className="bg-[color:var(--primary-color)]">
             <UserNavBar />
             <div className="flex flex-col items-center justify-center">
-                <Head>
-                    <title>{eventData.name}</title>
-                </Head>
+                
                 {/* Top div with image */}
                 <div className="relative h-40 sm:h-[25rem] overflow-hidden container shadow-lg">
                     {/* blurred image background */}

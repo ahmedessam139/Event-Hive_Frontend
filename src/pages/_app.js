@@ -6,7 +6,7 @@ export default function App({ Component, pageProps }) {
     return (
         <>
             <Head>
-                <link rel="shortcut icon" href="/favicon_io/favicon.ico" />
+                <link rel="shortcut icon" href="/favicon_io/favicon.png" />
                 <title>EventHive</title>
             </Head>
             <Component {...pageProps} />
