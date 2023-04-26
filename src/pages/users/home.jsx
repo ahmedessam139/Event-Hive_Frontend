@@ -1,12 +1,8 @@
 import Dashboard_Filter from "@/components/Dashboard_Filter";
 import Popup_Filter from "@/components/Popup_Filter";
 import UserNavBar from "@/components/UserNavBar";
-import EventCard from "@/components/Home_Page_partials/Event_Card";
-import Image from "next/image";
-import { useRouter } from "next/router";
+import EventsContainer from "@/components/Home_Page_partials/Events_Container";
 import { useEffect, useState } from "react";
-import { AiOutlinePlus } from "react-icons/ai";
-import { FaUsers } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 function Home() {
@@ -26,11 +22,11 @@ function Home() {
         setAllEvents([
             {
               "event_id": 1,
-              "name": "Rock the City",
-              "venue": "Madison Square Garden",
-              "date": "2023-05-12",
+              "name": "هارلي",
+              "venue": "Masria Plaza Hall",
+              "date": "Every Friday",
               "price": "49.99",
-              "profile": "https://picsum.photos/id/237/400/300"
+              "profile": "https://www.dostor.org/Upload/libfiles/406/2/253.jpg"
             },
             {
               "event_id": 2,
@@ -177,8 +173,8 @@ function Home() {
                         {/* Render the main content of the dashboard */}
                         <div className="flex w-full md:w-3/4 mx-auto justify-between container">
                             <div className="p-4 overflow-y-auto w-full h-[calc(80vh)]">
-                                <h1 className="text-2xl text-gray-500">Events</h1>
-                                <EventCard filteredEvents={filteredEvents} />
+                                <h1 className="text-2xl text-[color:var(--darker-secondary-color)] ml-10">  Events</h1>
+                                <EventsContainer filteredEvents={filteredEvents} />
                             </div>
                         </div>
                         {/* Bottom buttons */}
