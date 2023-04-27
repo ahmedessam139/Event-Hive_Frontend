@@ -18,21 +18,23 @@ const eventDataMock = {
         { id: "123", name: "John Doe" },
         { id: "456", name: "Jane Smith" },
     ],
+    
     ticketsTypes : [
         {
             type: "General*",
-            price: 0,
+            price: 20,
         },
         {
             type: "VIP*",
-            price: 0,
+            price: 30,
         },
-        {
+        { 
             type: "VVIP*",
-            price: 0,
+            price: 10,
         },
     ]
 };
+
 
 function EventPage() {
     const router = useRouter();
