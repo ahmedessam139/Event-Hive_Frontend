@@ -4,8 +4,6 @@ import EventDescription from '../../components/Event_ID_partials/EventDescriptio
 import Cover from '../../components/Event_ID_partials/Cover';
 import UserNavBar from "@/components/UserNavBar";
 import { getUserToken } from "@/utils/getUserToken";
-import Head from "next/head";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -20,7 +18,6 @@ const eventDataMock = {
         { id: "123", name: "John Doe" },
         { id: "456", name: "Jane Smith" },
     ],
-    price: 10.99,
     ticketsTypes : [
         {
             type: "General*",
@@ -46,16 +43,7 @@ function EventPage() {
 
     // function to handle share button click
     const share = () => {
-        if (navigator.share) {
-            navigator
-                .share({
-                    title: eventData.name,
-                    text: "Check out this event!",
-                    url: window.location.href,
-                })
-                .then(() => console.log("Successful share"))
-                .catch((error) => console.log("Error sharing", error));
-        }
+        console.log("share button clicked");
     };
 
     useEffect(() => {
