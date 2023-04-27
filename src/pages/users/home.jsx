@@ -18,79 +18,21 @@ function Home() {
         price: [10, 3000],
     });
 
-    const fetchAllEvents = async () => {
-        setAllEvents([
-            {
-              "event_id": 1,
-              "name": "هارلي",
-              "venue": "Masria Plaza Hall",
-              "date": "Every Friday",
-              "price": "49.99",
-              "profile": "https://www.dostor.org/Upload/libfiles/406/2/253.jpg"
-            },
-            {
-              "event_id": 2,
-              "name": "PopNation",
-              "venue": "Barclays Center",
-              "date": "2023-06-05",
-              "price": "29.99",
-              "profile": "https://picsum.photos/id/238/400/300"
-            },
-            {
-              "event_id": 3,
-              "name": "CountryFest",
-              "venue": "Nissan Stadium",
-              "date": "2023-07-20",
-              "price": "39.99",
-              "profile": "https://picsum.photos/id/239/400/300"
-            },
-            {
-              "event_id": 4,
-              "name": "Hip Hop Jam",
-              "venue": "American Airlines Arena",
-              "date": "2023-08-08",
-              "price": "59.99",
-              "profile": "https://picsum.photos/id/240/400/300"
-            },
-            {
-              "event_id": 5,
-              "name": "EDM Kingdom",
-              "venue": "Las Vegas Motor Speedway",
-              "date": "2023-09-15",
-              "price": "69.99",
-              "profile": "https://picsum.photos/id/241/400/300"
-            },
-            {
-              "event_id": 6,
-              "name": "JazzFest",
-              "venue": "New Orleans Fairgrounds",
-              "date": "2023-10-12",
-              "price": "49.99",
-              "profile": "https://picsum.photos/id/242/400/300"
-            },
-            {
-              "event_id": 7,
-              "name": "Classical Symphony",
-              "venue": "Walt Disney Concert Hall",
-              "date": "2023-11-05",
-              "price": "79.99",
-              "profile": "https://picsum.photos/id/243/400/300"
-            },
-            {
-              "event_id": 8,
-              "name": "Blues & Brews",
-              "venue": "Telluride Town Park",
-              "date": "2023-12-20",
-              "price": "59.99",
-              "profile": "https://picsum.photos/id/244/400/300"
-            },
-            
-          ]);
-    };
-
+    
     useEffect(() => {
-        fetchAllEvents();
-    }, []);
+        const fetchData = async () => {
+          try {
+            const response = await fetch('http://localhost:3001/events');
+            const data = await response.json();
+            setAllEvents(data);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+
+        fetchData();
+      
+      }, []);
 
     // dont move this state becoz it needs allevents
     const [filteredEvents, setFilteredEvents] = useState(allEvents);

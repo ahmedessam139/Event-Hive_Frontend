@@ -7,34 +7,6 @@ import { getUserToken } from "@/utils/getUserToken";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const eventDataMock = {
-    name: "Example Event",
-    cover: "https://www.dostor.org/Upload/libfiles/406/2/253.jpg",
-    date: "2023-05-01",
-    time: "10:00 AM",
-    venue: "123 Main St, Anytown USA",
-    organizer: "Example Organizer",
-    participants: [
-        { id: "123", name: "John Doe" },
-        { id: "456", name: "Jane Smith" },
-    ],
-    
-    ticketsTypes : [
-        {
-            type: "General*",
-            price: 20,
-        },
-        {
-            type: "VIP*",
-            price: 30,
-        },
-        { 
-            type: "VVIP*",
-            price: 10,
-        },
-    ]
-};
-
 
 function EventPage() {
     const router = useRouter();
@@ -49,14 +21,25 @@ function EventPage() {
     };
 
     useEffect(() => {
-        setEventData(eventDataMock);
-        setIsUserRegistered(
-            eventDataMock.participants.some(
-                (participant) => participant.id === userId
-            )
-        );
-
-        
+        async function fetchData() {
+            try {
+                const response = await fetch(`http://localhost:3001/eventid`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setEventData(data);
+                    setIsUserRegistered(
+                        data.participants.some(
+                            (participant) => participant.id === userId
+                        )
+                    );
+                } else {
+                    throw new Error("Failed to fetch event data");
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchData();
     }, [eventId, userId]);
 
     if (!eventData || !eventData.cover)
