@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { useRouter } from "next/router";
-import { removeUserToken } from "@/utils/removeUserToken";
 
 export default function Dropdown({ userData }) {
     const router = useRouter();
@@ -15,7 +14,7 @@ export default function Dropdown({ userData }) {
 
     // function to handle logout button click
     const handleLogout = () => {
-        removeUserToken();
+        
         router.push("/");
     };
 

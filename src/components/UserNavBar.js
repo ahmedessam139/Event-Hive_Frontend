@@ -1,5 +1,4 @@
 import UserDropdown from "@/components/UserDropdown";
-import { getUserToken } from "@/utils/getUserToken";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 //add FaSignInAlt and FaKey
@@ -8,48 +7,14 @@ import { FaSignInAlt, FaKey } from "react-icons/fa";
 export default function NavBar() {
     const router = useRouter();
 
-    const userIdCookie = getUserToken();
     const [singedIn, setSignedIn] = useState(false);
     const [userData, setUserData] = useState({});
 
+    //set signedIn to false
+
     // fetch the user data as soon as the page loads
-    const fetchUserData = async () => {
-        // If cookie was manually removed from browser
-        if (!userIdCookie) {
-            console.error("No cookie found! Please signin");
-        }
-        else {
-            setSignedIn(true);
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/user/details`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        user_token: userIdCookie,
-                    }),
-                }
-            );
-            if (!response.ok)
-                throw new Error(`${response.status} ${response.statusText}`);
-
-            // User Details fetched from API `/user/details`
-            try {
-                const data = await response.json();
-                setUserData(data);
-            } catch (error) {
-                console.error("Invalid JSON string:", error.message);
-            }
-        }
-    };
-
-    useEffect(() => {
-        fetchUserData();
-    }, []);
-
-
+    
+    
     if (!singedIn) {
         return (
             <nav className="bg-white border-color:var(--light-gray) light:bg--primary-color">
