@@ -15,7 +15,7 @@ function EventPricing({ eventData ,isUserRegistered}) {
                             {item.type}
                         </span>
                         <span className="w-1/3 text-center">
-                            ₹{item.price}
+                            {item.price} EGP
                         </span>
                         <button
                             onClick={() =>

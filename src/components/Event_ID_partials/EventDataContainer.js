@@ -60,7 +60,7 @@ function EventDataContainer({eventData ,isUserRegistered , share}) {
                             Ticket Pricing
                         </h3>
                         <p className="text-gray-800">
-                            ₹{Math.min(...eventData.ticketsTypes.map(ticket => ticket.price))}
+                            {Math.min(...eventData.ticketsTypes.map(ticket => ticket.price))} EGP
                         </p>
                     </div>
                     <div className="flex mt-4 md:mt-0">
