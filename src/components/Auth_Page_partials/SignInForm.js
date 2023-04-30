@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { FaEye, FaEyeSlash,FaSignInAlt,FaDoorOpen } from 'react-icons/fa';
+import { useDispatch, useSelector } from "react-redux";
+
 
 
 function SignInForm({}) {
@@ -11,34 +13,24 @@ function SignInForm({}) {
     const handlePasswordChange = (e) => setPassword(e.target.value);
     const handleShowPasswordChange = () => setShowPassword(!showPassword);
 
+    // const dispatch = useDispatch();
+    // const { loading, error, isLoggedIn } = useSelector((state) => state.auth);
+
+
+
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         //print the values in the console
         console.log(email, password);
-    
-        try {
-            const response = await fetch('/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email,
-                    password
-                })
-            });
-    
-            if (response.ok) {
-                const data = await response.json();
-                const token = data.token;
-    
-                // Store the token in local storage or in a state management library like Redux
-            } else {
-                // Handle error response
-            }
-        } catch (error) {
-            // Handle network error
-        }
+
+        //dispatch login action
+        // dispatch(login({ email, password }));
+
+        // //clear the form
+        // setEmail('');
+        // setPassword('');
     };
     
 
