@@ -3,6 +3,7 @@ import "@/styles/Home.css";
 import Head from "next/head";
 import { Provider } from 'react-redux';
 import store from "../store/index";
+import { SessionProvider } from "next-auth/react";
 
 export default function App({ Component, pageProps }) {
     return (
@@ -11,9 +12,9 @@ export default function App({ Component, pageProps }) {
                 <link rel="shortcut icon" href="/favicon_io/favicon.png" />
                 <title>EventHive</title>
             </Head>
-            <Provider store={store}>
+            <SessionProvider session={pageProps.session}>
                 <Component {...pageProps} />
-            </Provider>
+            </SessionProvider>
         </>
     );
 }

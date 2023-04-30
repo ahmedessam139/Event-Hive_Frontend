@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { FaEye, FaEyeSlash, FaSignInAlt, FaDoorOpen } from 'react-icons/fa';
 import { login } from "../../store/authSlice";
 import { useRouter } from "next/router";
+import {signIn} from "next-auth/react";
 
 
 function SignInForm({ }) {
@@ -25,8 +26,14 @@ function SignInForm({ }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-       
         
+        const res = await signIn('credentials',{
+            username: username,
+            password: password,
+            redirect: false
+        })
+       
+        console.log(res)
 
     };
 
