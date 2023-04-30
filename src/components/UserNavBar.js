@@ -3,25 +3,19 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 //add FaSignInAlt and FaKey
 import { FaSignInAlt, FaKey } from "react-icons/fa";
-import {  useSelector } from "react-redux";
 
 export default function NavBar() {
     const router = useRouter();
 
     const [singedIn, setSignedIn] = useState(false);
     const [userData, setUserData] = useState({});
-    const { isLoggedIn } = useSelector((state) => state.auth);
-    const { user } = useSelector((state) => state.auth);
+
 
 
     useEffect(() => {
-        if (isLoggedIn) {
-            console.log("user is logged in");
-            setSignedIn(true);
-            setUserData(user);
-            console.log(user);
+        if (0) {
         }
-    }, []);
+    }, [isLoggedIn]);
     // fetch the user data as soon as the page loads
     
     

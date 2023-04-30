@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaEye, FaEyeSlash, FaSignInAlt, FaDoorOpen } from 'react-icons/fa';
-import { useDispatch, useSelector } from "react-redux";
-
 import { login } from "../../store/authSlice";
-import { Navigate } from 'react-router-dom';
 import { useRouter } from "next/router";
 
 
@@ -19,26 +16,17 @@ function SignInForm({ }) {
 
 
     
-    const dispatch = useDispatch();
-    const { isLoggedIn } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        console.log(isLoggedIn + "from form");
-        if (isLoggedIn) {
-            router.push("/users/home");
-        }
-    }, [isLoggedIn]);
+        console.log(  "from form");
+       
+    }, []);
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        //print the values in the console
-        console.log(username, password);
+       
         
-        console.log(username, password);
-        dispatch(login({ username, password }));
-        
-        router.push("/users/home");
 
     };
 

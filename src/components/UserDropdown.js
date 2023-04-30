@@ -1,16 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
-import { logout } from "../store/authSlice";
-import { authService } from "../utils/authService";
 
 
 export default function Dropdown({ userData }) {
     const router = useRouter();
     const [showDropdown, setShowDropdown] = useState(false);
     const dropdownRef = useRef(null);
-    const dispatch = useDispatch();
 
 
     // function to handle dropdown toggle
@@ -21,7 +17,6 @@ export default function Dropdown({ userData }) {
     // function to handle logout button click
     const handleLogout = async () => {
 
-        await dispatch(logout());
         //reload the page
         router.reload();
         
@@ -79,21 +74,14 @@ export default function Dropdown({ userData }) {
                         <hr />
                         <div className="px-4 pb-2 cursor-default hover:bg-[color:var(--primary-color)]">
                             <div className="text-gray-800 font-medium pt-2">
-                                Registration No.
+                                ID
                             </div>
                             <div className="text-gray-600">
                                 {userData.id}
                             </div>
                         </div>
                         <hr />
-                        <div className="px-4 pb-2 cursor-default hover:bg-[color:var(--primary-color)]">
-                            <div className="text-gray-800 font-medium pt-2">
-                                Member since
-                            </div>
-                            <div className="text-gray-600">
-                               
-                            </div>
-                        </div>
+                        
                         <hr />
                         {/* Add other details here */}
                     </div>

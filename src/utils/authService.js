@@ -5,7 +5,8 @@ const API_URL = "https://dummyjson.com/auth"; // Replace with your API URL
 
 const login = async (data) => {
   const response = await axios.post(`${API_URL}/login`, data);
-  Cookies.set('token', response.data.tooken);
+  Cookies.set('token', response.data.token);
+  console.log(response.data.token);
   localStorage.setItem("user", JSON.stringify(response.data));
   return response.data;
 };
