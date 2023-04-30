@@ -1,11 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { logout } from "../store/authSlice";
+import { authService } from "../utils/authService";
+
 
 export default function Dropdown({ userData }) {
     const router = useRouter();
     const [showDropdown, setShowDropdown] = useState(false);
     const dropdownRef = useRef(null);
+    const dispatch = useDispatch();
+
 
     // function to handle dropdown toggle
     const toggleDropdown = () => {
@@ -13,9 +19,12 @@ export default function Dropdown({ userData }) {
     };
 
     // function to handle logout button click
-    const handleLogout = () => {
+    const handleLogout = async () => {
+
+        await dispatch(logout());
+        //reload the page
+        router.reload();
         
-        router.push("/");
     };
 
     // Attaches an event listener for the 'mousedown' event to detect a click outside the dropdown
@@ -73,7 +82,7 @@ export default function Dropdown({ userData }) {
                                 Registration No.
                             </div>
                             <div className="text-gray-600">
-                                {userData.reg_number}
+                                {userData.id}
                             </div>
                         </div>
                         <hr />
@@ -82,9 +91,7 @@ export default function Dropdown({ userData }) {
                                 Member since
                             </div>
                             <div className="text-gray-600">
-                                {new Date(userData.createdAt).getDate()}-
-                                {new Date(userData.createdAt).getUTCMonth() + 1}
-                               -{new Date(userData.createdAt).getFullYear()}
+                               
                             </div>
                         </div>
                         <hr />

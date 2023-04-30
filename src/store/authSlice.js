@@ -1,28 +1,30 @@
 import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
-import authServices from "../utils/authServices";
-// import localStorage from "local-storage";
-//get data from local storage
-// const user = localStorage.getItem("user")
+import authService from "../utils/authService";
+import Cookies from 'js-cookie';
 
-const user =  null;
+const user = typeof window !== "undefined" && Cookies.get('token') ? JSON.parse(localStorage.getItem("user")) : null;
+
 
 export const login = createAsyncThunk(
     "auth/login",
     async (data, thunkAPI) => {
         try {
-            const response = await authServices.login(data);
-            return response.data;
+            console.log(data);
+            const userData = await authService.login(data);
+            console.log(userData.username);
+            return {user:userData};
         } catch (error) {
+            console.log("fromSlice");
             return thunkAPI.rejectWithValue(error.response.data);
         }
     }
-);
+);  
 
 export const signup = createAsyncThunk(
     "auth/signup",
     async (data, thunkAPI) => {
         try {
-            const response = await authServices.signup(data);
+            const response = await authService.signup(data);
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -34,7 +36,7 @@ export const logout = createAsyncThunk(
     "auth/logout",
     async (data, thunkAPI) => {
         try {
-            const response = await authServices.logout(data);
+            const response = await authService.logout(data);
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -43,69 +45,46 @@ export const logout = createAsyncThunk(
 );
 
 
+
+
 const authSlice = createSlice({
     name: "auth",
-    initialState: {
-        user: user ? JSON.parse(user) : null,
-        isLoggedin: user ? true : false,
-        error: null,
-        loading: false,
-    },
-    reducers: {
-        setUser: (state, action) => {
-            state.user = action.payload;
-            state.isLoggedin = true;
-        },
-    },
+    initialState: user
+    ? { isLoggedIn: true, user }
+    : { isLoggedIn: false, user: null },
+
+    
     extraReducers: {
-        [login.pending]: (state, action) => {
-            state.loading = true;
-            state.error = null;
-        },
         [login.fulfilled]: (state, action) => {
-            state.loading = false;
-            state.user = action.payload.user;
             state.isLoggedin = true;
-            state.error = null;
+            state.user = action.payload.user;
         },
         [login.rejected]: (state, action) => {
-            state.loading = false;
-            state.error = action.payload;
-        },
-        [signup.pending]: (state, action) => {
-            state.loading = true;
-            state.error = null;
+            state.isLoggedin = false;
+            state.user = null;
         },
         [signup.fulfilled]: (state, action) => {    
-            state.loading = false;
-            state.user = action.payload.user;
             state.isLoggedin = true;
-            state.error = null;
+            state.user = action.payload.user;
         },
         [signup.rejected]: (state, action) => {
-            state.loading = false;
-            state.error = action.payload;
-        },
-        [logout.pending]: (state, action) => {
-            state.loading = true;
-            state.error = null;
+            state.isLoggedin = false;
+            state.user = null;
         },
         [logout.fulfilled]: (state, action) => {
-            state.loading = false;
-            state.user = null;
             state.isLoggedin = false;
-            state.error = null;
+            state.user = null;
         },
         [logout.rejected]: (state, action) => {
-            state.loading = false;
-            state.error = action.payload;
+            state.isLoggedin = true;
+            state.user = action.payload.user;
         },
     },
 });
 
         
 
-export const { setUser } = authSlice.actions;
+
 export default authSlice.reducer;
 
 

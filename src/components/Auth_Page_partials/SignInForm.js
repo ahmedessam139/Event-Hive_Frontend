@@ -1,45 +1,55 @@
-import { useState } from 'react';
-import { FaEye, FaEyeSlash,FaSignInAlt,FaDoorOpen } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+import { FaEye, FaEyeSlash, FaSignInAlt, FaDoorOpen } from 'react-icons/fa';
 import { useDispatch, useSelector } from "react-redux";
 
+import { login } from "../../store/authSlice";
+import { Navigate } from 'react-router-dom';
+import { useRouter } from "next/router";
 
 
-function SignInForm({}) {
-    const [email, setEmail] = useState('');
+function SignInForm({ }) {
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleEmailChange = (e) => setEmail(e.target.value);
+    const handleusernameChange = (e) => setUsername(e.target.value);
     const handlePasswordChange = (e) => setPassword(e.target.value);
     const handleShowPasswordChange = () => setShowPassword(!showPassword);
-
-    // const dispatch = useDispatch();
-    // const { loading, error, isLoggedIn } = useSelector((state) => state.auth);
+    const router = useRouter();
 
 
+    
+    const dispatch = useDispatch();
+    const { isLoggedIn } = useSelector((state) => state.auth);
 
+    useEffect(() => {
+        console.log(isLoggedIn + "from form");
+        if (isLoggedIn) {
+            router.push("/users/home");
+        }
+    }, [isLoggedIn]);
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         //print the values in the console
-        console.log(email, password);
+        console.log(username, password);
+        
+        console.log(username, password);
+        dispatch(login({ username, password }));
+        
+        router.push("/users/home");
 
-        //dispatch login action
-        // dispatch(login({ email, password }));
-
-        // //clear the form
-        // setEmail('');
-        // setPassword('');
     };
-    
 
+
+   
     return (
         <form onSubmit={handleSubmit}>
             <h1 className="text-2xl font-bold mb-6 text-[color:var(--darker-secondary-color)] ">Sign In <FaSignInAlt className="inline-block " /></h1>
             <div className="mb-4">
-                <label htmlFor="email" className="block text-gray-600 font-bold mb-2">Email Or Username</label>
-                <input type="text" id="email" name="email" className="filterInput" value={email} onChange={handleEmailChange} placeholder="Your email or username" required />
+                <label htmlFor="username" className="block text-gray-600 font-bold mb-2">Email Or Username</label>
+                <input type="text" id="username" name="username" className="filterInput" value={username} onChange={handleusernameChange} placeholder="Your email or username" required />
             </div>
             <div className="mb-4">
                 <label htmlFor="password" className="block text-gray-600 font-bold mb-2">Password</label>

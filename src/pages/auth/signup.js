@@ -2,6 +2,8 @@ import ContainerAndLogo from '../../components/Auth_Page_partials/ContainerAndLo
 import SignUpForm from '../../components/Auth_Page_partials/SignUpForm';
 
 export default function SignUp() {
+
+    
     return (
         <ContainerAndLogo>
             <SignUpForm/>
