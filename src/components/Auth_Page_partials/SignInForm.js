@@ -3,7 +3,8 @@ import { FaEye, FaEyeSlash, FaSignInAlt, FaDoorOpen } from 'react-icons/fa';
 import { login } from "../../store/authSlice";
 import { useRouter } from "next/router";
 import {signIn} from "next-auth/react";
-
+import { TextField } from '@mui/material';
+import { useSession } from 'next-auth/react';
 
 function SignInForm({ }) {
     const [username, setUsername] = useState('');
@@ -14,14 +15,13 @@ function SignInForm({ }) {
     const handlePasswordChange = (e) => setPassword(e.target.value);
     const handleShowPasswordChange = () => setShowPassword(!showPassword);
     const router = useRouter();
+    const { data, status } = useSession();
 
-
-    
-
+    //if there is a session, redirect to protected page
     useEffect(() => {
-        console.log(  "from form");
-       
-    }, []);
+        if (status === "authenticated") router.push('/protected');
+    }, [status]);
+    
 
 
     const handleSubmit = async (e) => {
@@ -32,9 +32,14 @@ function SignInForm({ }) {
             password: password,
             redirect: false
         })
+        if (res.error) {
+            console.log(res.error);
+        }
+        else {
+            console.log(res);
+            router.push('/protected');
+        }
        
-        console.log(res)
-
     };
 
 
@@ -43,13 +48,12 @@ function SignInForm({ }) {
         <form onSubmit={handleSubmit}>
             <h1 className="text-2xl font-bold mb-6 text-[color:var(--darker-secondary-color)] ">Sign In <FaSignInAlt className="inline-block " /></h1>
             <div className="mb-4">
-                <label htmlFor="username" className="block text-gray-600 font-bold mb-2">Email Or Username</label>
-                <input type="text" id="username" name="username" className="filterInput" value={username} onChange={handleusernameChange} placeholder="Your email or username" required />
+                <TextField  label="Email Or Username" variant="outlined" type="text" id="username" name="username" className="filterInput border-[color:var(--darker-secondary-color)]" value={username} onChange={handleusernameChange} placeholder="Your email or username" required />
             </div>
             <div className="mb-4">
                 <label htmlFor="password" className="block text-gray-600 font-bold mb-2">Password</label>
                 <div className="relative">
-                    <input type={showPassword ? "text" : "password"} id="password" name="password" className="filterInput pr-10 text-gray-600" value={password} onChange={handlePasswordChange} placeholder="Your password" required />
+                    <TextField label="Password" variant="outlined" type={showPassword ? "text" : "password"} id="password" name="password" className="filterInput pr-10 text-gray-600" value={password} onChange={handlePasswordChange} placeholder="Your password" required />
                     <button type="button" className="absolute top-0 right-0 h-full w-10 text-gray-600 focus:outline-none" onClick={handleShowPasswordChange}>
                         {showPassword ? <FaEyeSlash /> : <FaEye />}
                     </button>

@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.8",
+    "@emotion/styled": "^11.10.8",
+    "@mui/material": "^5.12.2",
     "@next/font": "13.2.1",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",

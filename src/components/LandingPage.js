@@ -1,5 +1,5 @@
-import FeaturesZigZag from "@/components/Landing_Page_partials/FeaturesZigZag";
-import HeroHome from "@/components/Landing_Page_partials/HeroHome";
+import FeaturesZigZag from "../components/Landing_Page_partials/FeaturesZigZag";
+import HeroHome from "../components/Landing_Page_partials/HeroHome";
 import React from "react";
 
 

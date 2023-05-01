@@ -1,5 +1,5 @@
-import "@/styles/globals.css";
-import "@/styles/Home.css";
+import "../styles/globals.css";
+import "../styles/Home.css";
 import Head from "next/head";
 import { Provider } from 'react-redux';
 import store from "../store/index";

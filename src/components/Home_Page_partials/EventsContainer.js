@@ -1,5 +1,4 @@
 // EventsContainer.js
-
 import EventCard from "./EventCard";
 
 const EventsContainer = ({ filteredEvents }) => {

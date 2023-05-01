@@ -14,7 +14,7 @@ const Protected = () => {
     return (
       <div>
         This page is Protected for special people. like{"\n"}
-        {JSON.stringify(data.user, null, 2)}
+        {JSON.stringify(data, null, 2)}
       </div>
     );
 

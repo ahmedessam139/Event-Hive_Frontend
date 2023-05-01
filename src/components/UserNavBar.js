@@ -1,4 +1,4 @@
-import UserDropdown from "@/components/UserDropdown";
+import UserDropdown from "../components/UserDropdown";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 //add FaSignInAlt and FaKey
@@ -10,12 +10,6 @@ export default function NavBar() {
     const [singedIn, setSignedIn] = useState(false);
     const [userData, setUserData] = useState({});
 
-
-
-    useEffect(() => {
-        if (0) {
-        }
-    }, [isLoggedIn]);
     // fetch the user data as soon as the page loads
     
     
