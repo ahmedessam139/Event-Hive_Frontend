@@ -1,6 +1,6 @@
 import UserDropdown from "../components/UserDropdown";
 import { useEffect, useState } from "react";
-import { FaSignInAlt, FaKey, FaUser, FaSignOutAlt, FaCog, FaEnvelope } from "react-icons/fa";
+import { FaSignInAlt, FaKey, FaUser, FaSignOutAlt, FaCog, FaEnvelope, FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { useSession } from "next-auth/react";
 import { AppBar, Toolbar, IconButton, Button, Drawer, List, ListItem, ListItemText } from "@mui/material";
 import { Menu as MenuIcon } from "@mui/icons-material";
@@ -15,8 +15,10 @@ export default function NavBar() {
   const [singedIn, setSignedIn] = useState(false);
   const [userData, setUserData] = useState({});
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleDrawerToggle = () => { 
+
+  const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
   };
 
@@ -24,10 +26,13 @@ export default function NavBar() {
     setDrawerOpen(false);
     router.push(route);
   };
+  const toggleMenu = () => {
+    setMenuOpen((prevState) => !prevState);
+  };
 
   if (status === "loading") return null;
 
-  if (status != "authenticated" ) {
+  if (status != "authenticated") {
     return (
       <AppBar position="static" color="inherit" sx={{ boxShadow: "none" }}>
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -88,15 +93,43 @@ export default function NavBar() {
               <MenuIcon />
             </IconButton>
           </div>
+
           {drawerOpen ? null : (
-            <div className="hidden md:block">
-              <span className="mr-4">Hello, {data.user.username}!</span>
+            <div className="hidden md:block flex">
+              {drawerOpen ? null : (
+                <div className="hidden md:block flex">
+                  <span onClick={toggleMenu} className="mr-4 cursor-pointer flex">
+                    Hello, {data.user.username}!
+                    {menuOpen ? (
+                      <FaAngleUp className="ml-1 pt-2" />
+                    ) : (
+                      <FaAngleDown className="ml-1 pt-2" />
+                    )}
+                  </span>
+                  {menuOpen && (
+                    <div className="absolute right-0 top-10 bg-white border rounded-md shadow-lg">
+                      <button type="button" className="btn text-gray-700 w-full py-2 px-4 block text-left" onClick={() => router.push("/dashboard")}>
+                        Dashboard
+                        <FaUser className="ml-1" />
+                      </button>
+                      <a href="/settings" className="btn text-gray-700 w-full py-2 px-4 block text-left">
+                        Settings
+                        <FaCog className="ml-1" />
+                      </a>
+                      <button type="button" className="btn text-gray-700 w-full py-2 px-4 block text-left" onClick={() => signOut()}>
+                        Signout
+                        <FaSignOutAlt className="ml-1" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
               <button type="button" className="btn text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full mb-4 sm:w-auto sm:mb-0" onClick={() => router.push("/dashboard")}>
                 Dashboard
                 <FaUser />
               </button>
               <button type="button" className="btn text-white bg-[color:var(--gray-color)] hover:bg-[color:var(--light-gray)] w-full sm:w-auto sm:ml-4" onClick={() => signOut()}>
-                Signout 
+                Signout
                 <FaSignOutAlt />
               </button>
 
@@ -137,6 +170,5 @@ export default function NavBar() {
       </AppBar>
     );
   }
-
 
 }
