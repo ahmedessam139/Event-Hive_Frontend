@@ -2,8 +2,7 @@ import EventDataContainer from '../../components/Event_ID_partials/EventDataCont
 import EventPricing from '../../components/Event_ID_partials/EventPricing';
 import EventDescription from '../../components/Event_ID_partials/EventDescription';
 import Cover from '../../components/Event_ID_partials/Cover';
-import UserNavBar from "@/components/UserNavBar";
-import { getUserToken } from "@/utils/getUserToken";
+import UserNavBar from "../../components/UserNavBar";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -11,7 +10,6 @@ import { useEffect, useState } from "react";
 function EventPage() {
     const router = useRouter();
     const eventId = router.query.eventId;
-    const userId = getUserToken();
     const [eventData, setEventData] = useState([]);
     const [isUserRegistered, setIsUserRegistered] = useState(false);
 
@@ -40,7 +38,7 @@ function EventPage() {
             }
         }
         fetchData();
-    }, [eventId, userId]);
+    }, [eventId]);
 
     if (!eventData || !eventData.cover)
         return <div>loading...</div>;

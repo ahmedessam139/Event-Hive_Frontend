@@ -105,7 +105,7 @@ function Dashboard_Filter({
                         onChange={handlePriceChange}
                     />
                     <p>
-                        ₹{filterOptions.price[0]} - ₹{filterOptions.price[1]}
+                        EGP {filterOptions.price[0]} - EGP {filterOptions.price[1]}
                     </p>
                 </div>
             </form>

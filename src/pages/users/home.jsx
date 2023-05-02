@@ -1,5 +1,5 @@
-import Dashboard_Filter from "../../components/Dashboard_Filter";
-import Popup_Filter from "../../components/Popup_Filter";
+import Dashboard_Filter from "../../components/Home_Page_partials/Dashboard_Filter";
+import Popup_Filter from "../../components/Home_Page_partials/Popup_Filter";
 import UserNavBar from "../../components/UserNavBar";
 import EventsContainer from "../../components/Home_Page_partials/EventsContainer";
 import { useEffect, useState } from "react";

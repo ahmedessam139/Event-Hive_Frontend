@@ -1,4 +1,4 @@
-import ContainerAndLogo from '../../components/Auth_Page_partials/ContainerAndLogo';
+import ContainerAndLogo from '../../components/ContainerAndLogo';
 import SignInForm from '../../components/Auth_Page_partials/SignInForm';
 import { useSelector } from "react-redux";
 
