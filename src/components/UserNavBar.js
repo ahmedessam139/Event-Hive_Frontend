@@ -16,7 +16,7 @@ export default function NavBar() {
   const [userData, setUserData] = useState({});
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const handleDrawerToggle = () => {
+  const handleDrawerToggle = () => { 
     setDrawerOpen(!drawerOpen);
   };
 
@@ -27,7 +27,7 @@ export default function NavBar() {
 
   if (status === "loading") return null;
 
-  if (status != "authenticated") {
+  if (status != "authenticated" ) {
     return (
       <AppBar position="static" color="inherit" sx={{ boxShadow: "none" }}>
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -96,7 +96,7 @@ export default function NavBar() {
                 <FaUser />
               </button>
               <button type="button" className="btn text-white bg-[color:var(--gray-color)] hover:bg-[color:var(--light-gray)] w-full sm:w-auto sm:ml-4" onClick={() => signOut()}>
-                Signout
+                Signout 
                 <FaSignOutAlt />
               </button>
 
