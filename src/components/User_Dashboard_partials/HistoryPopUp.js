@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField } from '@mui/material';
+import { FaSearchengin } from "react-icons/fa";
 
 
 function HistoryPopUp({ PastEvents }) {
@@ -19,7 +20,18 @@ function HistoryPopUp({ PastEvents }) {
                 <div className="flex justify-between mb-2">
                     <p className="mb-2 text-3xl text-gray-500">History</p>
                     <div className="flex justify-end p-2">
-                        <TextField label="Search Events" sx={TextFieldStyle} variant="outlined" type="text" value={searchTerm} onChange={handleSearchChange} placeholder="Search by Event Name" />
+                    <TextField
+  label="Search Events"
+  sx={TextFieldStyle}
+  variant="outlined"
+  type="text"
+  value={searchTerm}
+  onChange={handleSearchChange}
+  placeholder="Search by Event Name"
+  InputProps={{
+    endAdornment: <FaSearchengin size={24} />,
+  }}
+/>
                     </div>
                 </div>
 
