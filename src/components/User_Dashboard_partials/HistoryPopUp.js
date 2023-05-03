@@ -1,24 +1,30 @@
-import Popup from 'reactjs-popup';
-import "reactjs-popup/dist/index.css";
-import { FaTimes } from "react-icons/fa";
-
+import React, { useState } from 'react';
+import { TextField } from '@mui/material';
 
 
 function HistoryPopUp({ PastEvents }) {
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    }
+
+    const filteredEvents = PastEvents.filter(event => {
+        return event.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
 
     return (
         <div>
-
-
-            {/* The content of popup here*/}
-
             <div className="bg-white p-4 m-8 rounded-lg shadow-md">
                 <div className="flex justify-between mb-2">
                     <p className="mb-2 text-3xl text-gray-500">History</p>
+                    <div className="flex justify-end p-2">
+                        <TextField label="Search Events" sx={TextFieldStyle} variant="outlined" type="text" value={searchTerm} onChange={handleSearchChange} placeholder="Search by Event Name" />
+                    </div>
                 </div>
 
-
                 <div className="bg-white shadow-md rounded my-6 overflow-x-auto">
+
                     <table className="min-w-max w-full table-auto">
                         <thead>
                             <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
@@ -32,7 +38,7 @@ function HistoryPopUp({ PastEvents }) {
                             </tr>
                         </thead>
                         <tbody className="text-gray-600 text-sm font-light">
-                            {PastEvents.map((event) => (
+                            {filteredEvents.map((event) => (
                                 <tr key={event.event_id} className="border-b border-gray-200 hover:bg-gray-100">
                                     <td className="py-3 px-6 text-left whitespace-nowrap">{event.name}</td>
                                     <td className="py-3 px-6 text-left">{event.venue}</td>
@@ -46,12 +52,19 @@ function HistoryPopUp({ PastEvents }) {
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
-
         </div>
     );
+}
+const TextFieldStyle =
+{
+    "& .MuiOutlinedInput-root": {
+
+        "&.Mui-focused fieldset": { borderColor: "var(--darker-secondary-color)" },
+    },
+    "& .MuiInputLabel-outlined.Mui-focused": {
+        color: "var(--gray-color  )"
+    }
 }
 
 export default HistoryPopUp;
