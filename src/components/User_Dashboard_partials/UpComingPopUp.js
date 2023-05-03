@@ -3,14 +3,14 @@ import { TextField } from '@mui/material';
 import { FaSearchengin } from "react-icons/fa";
 
 
-function HistoryPopUp({ PastEvents }) {
+function UpComingPopUp({ UpcomingEvents }) {
     const [searchTerm, setSearchTerm] = useState("");
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
     }
 
-    const filteredEvents = PastEvents.filter(event => {
+    const filteredEvents = UpcomingEvents.filter(event => {
         return event.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
@@ -57,7 +57,7 @@ function HistoryPopUp({ PastEvents }) {
                                     <td className="py-3 px-6 text-left">{event.date}</td>
                                     <td className="py-3 px-6 text-left">{event.ticketType}</td>
                                     <td className="py-3 px-6 text-left">{event.price}</td>
-                                    <td className="py-3 px-6 text-left">{event.status}</td>
+                                    <td className={`py-3 px-6 text-left ${event.status === "Paid" ? "text-green-600" : event.status === "Pending" ? "text-yellow-600" : ""}`}>{event.status}</td>
                                     <td className="py-3 px-6 text-left">{event.transactionId}</td>
                                 </tr>
                             ))}
@@ -79,4 +79,5 @@ const TextFieldStyle =
     }
 }
 
-export default HistoryPopUp;
+export default UpComingPopUp;
+

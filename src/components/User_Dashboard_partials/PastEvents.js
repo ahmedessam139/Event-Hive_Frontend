@@ -62,19 +62,43 @@ const PastEvents = ({ PastEvents }) => {
               <th className="py-3 px-6 text-left">Transaction ID</th>
             </tr>
           </thead>
+
           <tbody className="text-gray-600 text-sm font-light">
-            {PastEvents.map((event) => (
-              <tr key={event.event_id} className="border-b border-gray-200 hover:bg-gray-100">
-                <td className="py-3 px-6 text-left whitespace-nowrap">{event.name}</td>
-                <td className="py-3 px-6 text-left">{event.venue}</td>
-                <td className="py-3 px-6 text-left">{event.date}</td>
-                <td className="py-3 px-6 text-left">{event.ticketType}</td>
-                <td className="py-3 px-6 text-left">{event.price}</td>
-                <td className="py-3 px-6 text-left">{event.status}</td>
-                <td className="py-3 px-6 text-left">{event.transactionId}</td>
-              </tr>
-            ))}
+            {PastEvents.length >= 5 ? (
+              PastEvents.slice(0, 5).map((event) => (
+                <tr key={event.event_id} className="border-b border-gray-200 hover:bg-gray-100">
+                  <td className="py-3 px-6 text-left whitespace-nowrap">{event.name}</td>
+                  <td className="py-3 px-6 text-left">{event.venue}</td>
+                  <td className="py-3 px-6 text-left">{event.date}</td>
+                  <td className="py-3 px-6 text-left">{event.ticketType}</td>
+                  <td className="py-3 px-6 text-left">{event.price}</td>
+                  <td className="py-3 px-6 text-left">{event.status}</td>
+                  <td className="py-3 px-6 text-left">{event.transactionId}</td>
+                </tr>
+              ))
+            ) : (
+              PastEvents.map((event) => (
+                <tr key={event.event_id} className="border-b border-gray-200 hover:bg-gray-100">
+                  <td className="py-3 px-6 text-left whitespace-nowrap">{event.name}</td>
+                  <td className="py-3 px-6 text-left">{event.venue}</td>
+                  <td className="py-3 px-6 text-left">{event.date}</td>
+                  <td className="py-3 px-6 text-left">{event.ticketType}</td>
+                  <td className="py-3 px-6 text-left">{event.price}</td>
+                  <td className="py-3 px-6 text-left">{event.status}</td>
+                  <td className="py-3 px-6 text-left">{event.transactionId}</td>
+                </tr>
+              ))
+            )}
           </tbody>
+
+
+
+
+
+
+
+
+
         </table>
       </div>
     </div>
