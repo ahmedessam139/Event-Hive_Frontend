@@ -55,7 +55,7 @@ function HeroHome() {
                                 </div>
                             </div>)}
                         {status == "authenticated" && (
-                            <div className="hidden md:block">
+                            <div className=" md:block">
                                 <span className="mr-4">Hello, {data.user.username}!</span>
 
                                 <button type="button" className="btn text-white bg-gradient-to-l from-[color:var(--darker-secondary-color)] to-gray-700 hover:bg-[color:var(--secondary-color)] w-full mb-4 sm:w-auto sm:mb-0" onClick={() => signOut()}>

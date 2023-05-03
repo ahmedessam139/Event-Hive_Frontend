@@ -1,9 +1,8 @@
 import UserNavBar from "../../components/UserNavBar";
 import UpdateForm from "../../components/Profile_page_partials/updateForm";
 import ContainerAndLogo from "../../components/ContainerAndLogo";
-import { useSession } from "next-auth/react";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+import Footer from "../../components/FooterComponent";
+
 
 export default function Profile() {
 
@@ -16,6 +15,8 @@ export default function Profile() {
             <ContainerAndLogo>
                 <UpdateForm />
             </ContainerAndLogo>
+            <Footer />
+            
         </div>
 
     )

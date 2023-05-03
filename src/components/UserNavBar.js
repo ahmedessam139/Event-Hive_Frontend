@@ -108,12 +108,12 @@ export default function NavBar() {
                   </span>
                   {menuOpen && (
                     <div className="absolute right-0 top-10 bg-white border rounded-md shadow-lg z-10">
-                      <button type="button" className="btn text-gray-700 w-full py-2 px-4 block text-left" onClick={() => router.push("/dashboard")}>
+                      <button type="button" className="btn text-gray-700 w-full py-2 px-4 block text-left" onClick={() => router.push("/users/dashboard")}>
                         Dashboard
                         <FaUser className="ml-1" />
                       </button>
-                      <button type="button" className="btn text-gray-700 w-full py-2 px-4 block text-left" onClick={() => router.push("/settings")}>
-                        Settings
+                      <button type="button" className="btn text-gray-700 w-full py-2 px-4 block text-left" onClick={() => router.push("/users/profile")}>
+                        Update Profile
                         <FaCog className="ml-1" />
                       </button>
                       <button type="button" className="btn text-gray-700 w-full py-2 px-4 block text-left" onClick={() => signOut()}>
@@ -124,7 +124,7 @@ export default function NavBar() {
                   )}
                 </div>
               )}
-              <button type="button" className="btn text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full mb-4 sm:w-auto sm:mb-0" onClick={() => router.push("/dashboard")}>
+              <button type="button" className="btn text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full mb-4 sm:w-auto sm:mb-0" onClick={() => router.push("/users/dashboard")}>
                 Dashboard
                 <FaUser />
               </button>
@@ -141,14 +141,14 @@ export default function NavBar() {
                 <ListItemText primary="Home" />
               </ListItem>
               <ListItem button onClick={() => handleMenuItemClick("/dashboard")}>
-                <button type="button" className="btn text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full mb-4 sm:w-auto sm:mb-0" onClick={() => router.push("/dashboard")}>
+                <button type="button" className="btn text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full mb-4 sm:w-auto sm:mb-0" onClick={() => router.push("/users/dashboard")}>
                   Dashboard
                   <FaUser />
                 </button>
               </ListItem>
-              <ListItem button onClick={() => handleMenuItemClick("/settings")}>
+              <ListItem button onClick={() => handleMenuItemClick("/users/profile")}>
                 <a href="/settings" className="btn text-white bg-[color:var(--gray-color)] hover:bg-[color:var(--light-gray)] w-full sm:w-auto sm:ml-4">
-                  Settings
+                  Update Profile
                   <FaCog />
                 </a>
               </ListItem>

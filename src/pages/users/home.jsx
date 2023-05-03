@@ -2,6 +2,7 @@ import Dashboard_Filter from "../../components/Home_Page_partials/Dashboard_Filt
 import Popup_Filter from "../../components/Home_Page_partials/Popup_Filter";
 import UserNavBar from "../../components/UserNavBar";
 import EventsContainer from "../../components/Home_Page_partials/EventsContainer";
+import Footer from "../../components/FooterComponent";
 import { useEffect, useState } from "react";
 import { FaFilter } from "react-icons/fa";
 
@@ -18,21 +19,21 @@ function Home() {
         price: [10, 3000],
     });
 
-    
+
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            const response = await fetch('http://localhost:3001/events');
-            const data = await response.json();
-            setAllEvents(data);
-          } catch (error) {
-            console.error(error);
-          }
+            try {
+                const response = await fetch('http://localhost:3001/events');
+                const data = await response.json();
+                setAllEvents(data);
+            } catch (error) {
+                console.error(error);
+            }
         };
 
         fetchData();
-      
-      }, []);
+
+    }, []);
 
     // dont move this state becoz it needs allevents
     const [filteredEvents, setFilteredEvents] = useState(allEvents);
@@ -86,13 +87,12 @@ function Home() {
     };
 
     return (
-        <div className="overflow-y-hidden bg-[color:var(--primary-color)]">
+        <div className=" bg-[color:var(--primary-color)]">
             <UserNavBar />
             <div className="flex m-auto">
                 <div className="flex justify-center w-full">
-                    <div className="flex  w-full  gap-8 lg:gap-8  h-[calc(88vh)]">
-                        {/* Render the regular filter for medium screens and above */}
-                        <div className="hidden md:flex flex-col p-4 sticky top-0 w-1/6 md:w-1/4">
+                    <div className="flex  w-full ">
+                        <div className="hidden md:flex flex-col p-4 mb-6  w-1/6 md:w-1/4">
                             <Dashboard_Filter
                                 filterOptions={filterOptions}
                                 setFilterOptions={setFilterOptions}
@@ -112,16 +112,13 @@ function Home() {
                                 </div>
                             </div>
                         )}
-                        {/* Render the main content of the dashboard */}
                         <div className="flex w-full md:w-3/4 mx-auto justify-between container">
                             <div className="p-4 overflow-y-auto w-full h-[calc(80vh)]">
                                 <h1 className="text-2xl text-[color:var(--darker-secondary-color)] ml-10 mb-5">  Events</h1>
                                 <EventsContainer filteredEvents={filteredEvents} />
                             </div>
                         </div>
-                        {/* Bottom buttons */}
                         <div className="fixed bottom-3 right-3">
-                            {/* Button to open the popup filter */}
                             <button
                                 onClick={() => setPopupFilterOpen(true)}
                                 className="md:hidden flex items-center justify-center w-[4rem] h-[4rem] text-white rounded-full bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] hover:scale-105 shadow-lg cursor-pointer transition-all ease-in-out focus:outline-none"

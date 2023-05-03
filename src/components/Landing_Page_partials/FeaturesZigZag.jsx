@@ -27,7 +27,7 @@ function FeaturesZigzag({ images }) {
                             
                             {/* Content */}
                             <div
-                                className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-6 lg:col-span-12"
+                                className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-12 lg:col-span-12"
                                 data-aos="fade-right"
                             >
                                 <div className="md:pr-4 lg:pr-12 xl:pr-16">
@@ -92,7 +92,7 @@ function FeaturesZigzag({ images }) {
                             
                             {/* Content */}
                             <div
-                                className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-6 lg:col-span-12"
+                                className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-12 lg:col-span-12"
                                 data-aos="fade-right"
                             >
                                 <div className="md:pr-4 lg:pr-12 xl:pr-16">

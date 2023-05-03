@@ -3,6 +3,7 @@ import EventPricing from '../../components/Event_ID_partials/EventPricing';
 import EventDescription from '../../components/Event_ID_partials/EventDescription';
 import Cover from '../../components/Event_ID_partials/Cover';
 import UserNavBar from "../../components/UserNavBar";
+import Footer from "../../components/Footer";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -64,6 +65,7 @@ function EventPage() {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
         );
 }
