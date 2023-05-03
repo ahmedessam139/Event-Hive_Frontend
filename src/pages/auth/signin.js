@@ -1,10 +1,13 @@
 import ContainerAndLogo from '../../components/ContainerAndLogo';
 import SignInForm from '../../components/Auth_Page_partials/SignInForm';
 import { useSelector } from "react-redux";
+import Footer from "../../components/FooterComponent";
+
 
 export default function SignIn() {
 
   return (
+    <>
     <div className="flex justify-center bg-[color:var(--primary-color)] w-[100%] ">
       <div className="flex justify-center  md:w-[60%] p-5 ">
         <ContainerAndLogo>
@@ -12,6 +15,8 @@ export default function SignIn() {
         </ContainerAndLogo>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 

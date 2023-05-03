@@ -1,11 +1,17 @@
 import LandingPage from "../components/LandingPage";
-import Head from "next/head";
-import Image from "next/image";
+import Footer from "../components/FooterComponent";
+
 
 export default function Home() {
     return (
+        <>
         <div>
             <LandingPage />
         </div>
+        
+        <Footer/>
+        
+        </>
+
     );
 }
