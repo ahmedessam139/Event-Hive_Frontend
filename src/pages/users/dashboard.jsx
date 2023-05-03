@@ -1,4 +1,4 @@
-import UserNavBar from "../../components/userNavBar";
+import UserNavBar from "../../components/UserNavBar";
 import Counters from "../../components/User_Dashboard_partials/Counters";
 import UpcomingEvents from "../../components/User_Dashboard_partials/UpcomingEvents";
 import PastEvents from "../../components/User_Dashboard_partials/PastEvents";
@@ -7,6 +7,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import Popup from 'reactjs-popup';
 
 const Dashboard = () => {
     const [loading, setLoading] = useState(true);
