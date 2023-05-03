@@ -95,10 +95,10 @@ export default function NavBar() {
           </div>
 
           {drawerOpen ? null : (
-            <div className="hidden md:block flex">
+            <div className="hidden md:block flex ">
               {drawerOpen ? null : (
-                <div className="hidden md:block flex">
-                  <span onClick={toggleMenu} className="mr-4 cursor-pointer flex">
+                <div className="hidden md:inline-block">
+                  <span onClick={toggleMenu} className="mr-4 cursor-pointer flex inline-block">
                     Hello, {data.user.username}!
                     {menuOpen ? (
                       <FaAngleUp className="ml-1 pt-2" />
@@ -107,15 +107,15 @@ export default function NavBar() {
                     )}
                   </span>
                   {menuOpen && (
-                    <div className="absolute right-0 top-10 bg-white border rounded-md shadow-lg">
+                    <div className="absolute right-0 top-10 bg-white border rounded-md shadow-lg z-10">
                       <button type="button" className="btn text-gray-700 w-full py-2 px-4 block text-left" onClick={() => router.push("/dashboard")}>
                         Dashboard
                         <FaUser className="ml-1" />
                       </button>
-                      <a href="/settings" className="btn text-gray-700 w-full py-2 px-4 block text-left">
+                      <button type="button" className="btn text-gray-700 w-full py-2 px-4 block text-left" onClick={() => router.push("/settings")}>
                         Settings
                         <FaCog className="ml-1" />
-                      </a>
+                      </button>
                       <button type="button" className="btn text-gray-700 w-full py-2 px-4 block text-left" onClick={() => signOut()}>
                         Signout
                         <FaSignOutAlt className="ml-1" />
