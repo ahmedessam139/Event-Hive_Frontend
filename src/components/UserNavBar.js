@@ -107,7 +107,7 @@ export default function NavBar() {
                     )}
                   </span>
                   {menuOpen && (
-                    <div className="absolute right-0 top-10 bg-white border rounded-md shadow-lg z-10">
+                    <div className="absolute right-0 top-16 bg-white border rounded-md shadow-lg z-10">
                       <button type="button" className="btn text-gray-700 w-full py-2 px-4 block text-left" onClick={() => router.push("/users/dashboard")}>
                         Dashboard
                         <FaUser className="ml-1" />
