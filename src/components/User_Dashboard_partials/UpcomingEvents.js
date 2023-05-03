@@ -3,7 +3,7 @@ const UpcomingEvents = ({ UpcomingEvents }) => {
       <div className="bg-white p-4 m-8 rounded-lg shadow-md">
         <div className="flex justify-between mb-2">
           <p className="mb-2 text-3xl text-gray-500">Upcoming</p>
-          <button className="bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] text-white font-bold py-2 px-4 rounded-full">See All..</button>
+          <button className="bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] text-white font-bold py-1 px-4 rounded-full">See All..</button>
         </div>
         <div className="bg-white shadow-md rounded my-6 overflow-x-auto">
           <table className="min-w-max w-full table-auto">
@@ -26,7 +26,7 @@ const UpcomingEvents = ({ UpcomingEvents }) => {
                   <td className="py-3 px-6 text-left">{event.date}</td>
                   <td className="py-3 px-6 text-left">{event.ticketType}</td>
                   <td className="py-3 px-6 text-left">{event.price}</td>
-                  <td className="py-3 px-6 text-left">{event.status}</td>
+                  <td className={`py-3 px-6 text-left ${event.status === "Paid" ? "text-green-600" : event.status === "Pending" ? "text-yellow-600" : ""}`}>{event.status}</td>
                   <td className="py-3 px-6 text-left">{event.transactionId}</td>
                 </tr>
               ))}

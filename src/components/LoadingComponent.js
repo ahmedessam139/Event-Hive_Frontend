@@ -5,7 +5,7 @@ export default function LoadingComponent() {
 
     return (
 
-        <div class="flex justify-center w-full">
+        <div class="flex items-center justify-center w-screen h-screen">
             <FadeLoader color="var(--darker-secondary-color)" loading={true} size={150} />
         </div>
 
