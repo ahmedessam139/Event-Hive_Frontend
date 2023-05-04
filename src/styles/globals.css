@@ -14,12 +14,15 @@
   --white-color: #ffffff;
   --gray-color: #242424;
   --light-gray: #494949;
-  --lighter-gray: #fcfcfc;
+  --lighter-gray: #8c8c8c;
 }
+
+
 
 /* width */
 ::-webkit-scrollbar {
   width: 4px;
+  height: 4px;
 }
 
 /* Track */
@@ -36,9 +39,12 @@
 }
 
 /* Handle on hover */
-/* ::-webkit-scrollbar-thumb:hover {
-  background: var(--light-gray);
-} */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--lighter-gray);
+}
+
+/* Handle X-scrollBar */
+
 
 * {
   font-family: "DM Sans", sans-serif;

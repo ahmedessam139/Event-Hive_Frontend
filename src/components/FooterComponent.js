@@ -7,11 +7,11 @@ const Footer = () => {
 
   return (
 
-    <footer className="bg-white rounded-lg shadow mt-4  ">
-      <div className="w-full max-w-screen-xl mx-auto  md:py-2 bg-[color:var(--lighter-gray)]">
+    <footer className="bg-white rounded-lg shadow mt-5  ">
+      <div className="w-full max-w-screen-xl mx-auto  md:py-2 bg-gray-100">
         <div className="sm:flex sm:items-center sm:justify-between">
           <div class="flex justify-center items-center ">
-
+            
             <div onClick={() => router.push("/")} className="flex items-center gap-x-3 cursor-pointer mx-3">
               <img src="/favicon_io/eventhive-logo.svg" width={250} height={70} alt="Logo" />
             </div>

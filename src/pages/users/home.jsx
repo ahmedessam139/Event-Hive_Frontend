@@ -1,24 +1,15 @@
-import Dashboard_Filter from "../../components/Home_Page_partials/Dashboard_Filter";
-import Popup_Filter from "../../components/Home_Page_partials/Popup_Filter";
 import UserNavBar from "../../components/UserNavBar";
 import EventsContainer from "../../components/Home_Page_partials/EventsContainer";
-import Footer from "../../components/FooterComponent";
+import FooterComponent from "../../components/FooterComponent";
+import Parteners from "../../components/Home_Page_partials/Parteners";
 import { useEffect, useState } from "react";
-import { FaFilter } from "react-icons/fa";
+import { TextField } from '@mui/material';
+import { FaSearchengin } from "react-icons/fa";
 
 function Home() {
-    // const router = useRouter();
     const picRatio = 0.606;
-
     const [allEvents, setAllEvents] = useState([]);
-    const [popupFilterOpen, setPopupFilterOpen] = useState(false);
-    const [filterOptions, setFilterOptions] = useState({
-        keyword: "",
-        category: "",
-        dateRange: "",
-        price: [10, 3000],
-    });
-
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,108 +21,57 @@ function Home() {
                 console.error(error);
             }
         };
-
         fetchData();
-
     }, []);
 
-    // dont move this state becoz it needs allevents
-    const [filteredEvents, setFilteredEvents] = useState(allEvents);
+    const filteredEvents = allEvents.filter((event) =>
+        event.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        event.venue.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
-    // Update filteredEvents state whenever allEvents or filterOptions change
-    useEffect(() => {
-        const newFilteredEvents = allEvents.filter((event) => {
-            // Check if keyword filter matches
-            if (
-                filterOptions.keyword.toLowerCase() &&
-                !event.name.toLowerCase().includes(filterOptions.keyword.toLowerCase())
-            ) {
-                return false;
-            }
-
-            // Check if date range filter matches
-            if (filterOptions.dateRange) {
-                const date = filterOptions.dateRange;
-                // Split the date string into an array of substrings
-                const dateParts = event.date.split("/");
-                // Rearrange the array elements to get yyyy-mm-dd format
-                const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
-                if (formattedDate < date) {
-                    return false;
-                }
-            }
-
-            // Check if price filter matches
-            if (
-                event.price < filterOptions.price[0] ||
-                event.price > filterOptions.price[1]
-            ) {
-                return false;
-            }
-
-            return true;
-        });
-
-        setFilteredEvents(newFilteredEvents);
-    }, [allEvents, filterOptions]);
-
-    const handleFilterClear = () => {
-        setFilterOptions({
-            keyword: "",
-            category: "",
-            dateRange: "",
-            price: [10, 3000],
-        });
-        setFilteredEvents(allEvents);
-        setPopupFilterOpen(false);
+    const handleSearchQueryChange = (event) => {
+        setSearchQuery(event.target.value);
     };
 
     return (
-        <div className=" bg-[color:var(--primary-color)]">
+        <div className=" bg-[color:var(--primary-color)] h-full">
             <UserNavBar />
-            <div className="flex m-auto">
-                <div className="flex justify-center w-full">
-                    <div className="flex  w-full ">
-                        <div className="hidden md:flex flex-col p-4 mb-6  w-1/6 md:w-1/4">
-                            <Dashboard_Filter
-                                filterOptions={filterOptions}
-                                setFilterOptions={setFilterOptions}
-                                handleFilterClear={handleFilterClear}
-                            />
+            <div className="flex justify-center w-full">
+                <div className="flex w-full mx-auto justify-between container">
+                    <div className="p-4  w-full flex flex-col items-center">
+                        <div className="flex justify-center mb-8">
+                            <a href='/'>
+                                <img src="/favicon_io/eventhive-logo.svg" width={400} height={400} alt="Logo" />
+                            </a>
                         </div>
-                        {/* Render the popup filter for small screens */}
-                        {popupFilterOpen && (
-                            <div className="md:hidden fixed inset-0 z-10 bg-black bg-opacity-50 flex items-center justify-center">
-                                <div className="bg-white rounded-lg p-4 w-5/6">
-                                    <Popup_Filter
-                                        filterOptions={filterOptions}
-                                        setFilterOptions={setFilterOptions}
-                                        handleFilterClear={handleFilterClear}
-                                        handleClose={() => setPopupFilterOpen(false)}
-                                    />
-                                </div>
-                            </div>
-                        )}
-                        <div className="flex w-full md:w-3/4 mx-auto justify-between container">
-                            <div className="p-4 overflow-y-auto w-full h-[calc(80vh)]">
-                                <h1 className="text-2xl text-[color:var(--darker-secondary-color)] ml-10 mb-5">  Events</h1>
-                                <EventsContainer filteredEvents={filteredEvents} />
-                            </div>
+                        <div className="flex justify-center mb-4 md:w-[60%] w-[90%]">
+                            <TextField label="Search Events" sx={TextFieldStyle} variant="outlined" type="text" placeholder="Search by Event Name or Venue...." InputProps={{ endAdornment: <FaSearchengin size={24} />, }} value={searchQuery} onChange={handleSearchQueryChange} />
                         </div>
-                        <div className="fixed bottom-3 right-3">
-                            <button
-                                onClick={() => setPopupFilterOpen(true)}
-                                className="md:hidden flex items-center justify-center w-[4rem] h-[4rem] text-white rounded-full bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] hover:scale-105 shadow-lg cursor-pointer transition-all ease-in-out focus:outline-none"
-                                title="Filter Events"
-                            >
-                                <FaFilter className="w-6 h-6" />
-                            </button>
-                        </div>
+                        <h1 className="text-2xl text-[color:var(--light-gray)]  mb-5 flex justify-center ">  Our Parteners </h1>
+                        <Parteners />
+                        <h1 className="text-2xl text-[color:var(--light-gray)]  mb-5 flex justify-center ">  Upcoming Events</h1>
+                        <EventsContainer Events={filteredEvents} />
                     </div>
                 </div>
             </div>
+            <FooterComponent />
         </div>
     );
+}
+
+
+
+const TextFieldStyle =
+{
+    "& .MuiOutlinedInput-root": {
+
+        "&.Mui-focused fieldset": { borderColor: "var(--darker-secondary-color)" },
+    },
+    "& .MuiInputLabel-outlined.Mui-focused": {
+        color: "var(--gray-color  )"
+    },
+    width: "100%",
+
 }
 
 export default Home;

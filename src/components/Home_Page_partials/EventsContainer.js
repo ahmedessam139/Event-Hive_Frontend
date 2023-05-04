@@ -1,13 +1,13 @@
 // EventsContainer.js
 import EventCard from "./EventCard";
 
-const EventsContainer = ({ filteredEvents }) => {
+const EventsContainer = ({ Events }) => {
     return (
-        <div className="flex flex-wrap justify-center gap-6">
-            {filteredEvents.length === 0 ? (
+        <div className="flex flex-wrap justify-center gap-6 md:gap-3">
+            {Events.length === 0 ? (
                 <p>No Events Found</p>
             ) : (
-                filteredEvents.map((event) => <EventCard event={event} />)
+                Events.map((event) => <EventCard event={event} />)
             )}
         </div>
     );

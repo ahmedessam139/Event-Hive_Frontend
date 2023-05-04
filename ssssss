@@ -1,0 +1,75 @@
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+
+const Parteners = () => {
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const handleScroll = (direction) => {
+    const container = document.getElementById('partners-container');
+    const containerWidth = container.offsetWidth;
+    const scrollAmount = containerWidth / 2;
+    if (direction === 'left') {
+      container.scrollTo({
+        left: scrollPosition - scrollAmount,
+        behavior: 'smooth',
+      });
+      setScrollPosition((prevPosition) => prevPosition - scrollAmount);
+    } else if (direction === 'right') {
+      container.scrollTo({
+        left: scrollPosition + scrollAmount,
+        behavior: 'smooth',
+      });
+      setScrollPosition((prevPosition) => prevPosition + scrollAmount);
+    }
+  };
+
+  return (
+    <div className="bg-white p-8 m-8 mt-3 rounded-lg shadow-md w-full">
+      <div className="relative flex justify-center items-center">
+        <button
+          className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md focus:outline-none"
+          onClick={() => handleScroll('left')}
+        >
+          <FaArrowLeft />
+        </button>
+        <button
+          className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md focus:outline-none"
+          onClick={() => handleScroll('right')}
+        >
+          <FaArrowRight />
+        </button>
+        <div
+          id="partners-container"
+          className="flex items-center overflow-x-auto"
+        >
+          <img
+            src="https://www.thesun.co.uk/wp-content/uploads/2020/09/NINTCHDBPICT000605774915.jpg"
+            alt="Partener"
+            className="w-1/4 h-1/4 mx-4"
+          />
+          <img
+            src="https://www.thesun.co.uk/wp-content/uploads/2020/09/NINTCHDBPICT000605774915.jpg"
+            alt="Partener"
+            className="w-1/4 h-1/4 mx-4"
+          />
+          <img
+            src="https://www.thesun.co.uk/wp-content/uploads/2020/09/NINTCHDBPICT000605774915.jpg"
+            alt="Partener"
+            className="w-1/4 h-1/4 mx-4"
+          />
+          <img
+            src="https://www.thesun.co.uk/wp-content/uploads/2020/09/NINTCHDBPICT000605774915.jpg"
+            alt="Partener"
+            className="w-1/4 h-1/4 mx-4"
+          />
+          <img
+            src="https://www.thesun.co.uk/wp-content/uploads/2020/09/NINTCHDBPICT000605774915.jpg"
+            alt="Partener"
+            className="w-1/4 h-1/4 mx-4"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Parteners;

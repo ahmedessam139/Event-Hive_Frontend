@@ -7,12 +7,7 @@ function ContainerAndLogo({ children }) {
       <div className="  p-8 bg-white rounded-lg shadow-lg w-[90%] md:w-[65%] ">
         <div className="flex justify-center mb-8">
           <a href='/'>
-            <img
-              src="/favicon_io/eventhive-logo.svg"
-              width={2000}
-              height={400}
-              alt="Logo"
-            />
+            <img src="/favicon_io/eventhive-logo.svg" width={2000} height={400} alt="Logo" />
           </a>
         </div>
         {children}
