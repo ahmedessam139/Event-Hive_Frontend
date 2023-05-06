@@ -5,16 +5,9 @@ import Image from "next/image";
 function Cover({eventData}) {
     return (
 
-        <div className="relative h-40 sm:h-[25rem] overflow-hidden container shadow-lg">
+        <div className="relative h-40 sm:h-[25rem] overflow-hidden container shadow-lg w-full">
             {/* blurred image background */}
-            <Image
-                src={eventData.cover}
-                alt={eventData.name}
-                fill
-                placeholder="blur"
-                blurDataURL={eventData.cover}
-                className="h-[25rem] container filter blur hidden lg:block object-cover"
-            />
+            <Image src={eventData.cover} alt={eventData.name} fill placeholder="blur" blurDataURL={eventData.cover} className="h-[25rem] container filter blur hidden lg:block object-cover" />
 
             <div className="absolute inset-0 w-full h-40 sm:h-[25rem] container">
                 <Image

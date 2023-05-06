@@ -4,16 +4,10 @@ function EventDescription({eventData}) {
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 About the Event
             </h3>
-            {Array(3)
-                .fill()
-                .map((_, index) => (
-                    <p
-                        key={index}
-                        className="text-gray-600 text-md"
-                    >
+           
+                    <p className="text-gray-600 text-md" >
                         {eventData.description}
                     </p>
-                ))}
         </div>
     );
 }
