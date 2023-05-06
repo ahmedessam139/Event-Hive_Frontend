@@ -7,7 +7,6 @@ import { TextField } from '@mui/material';
 import { FaSearchengin } from "react-icons/fa";
 
 function Home() {
-    const picRatio = 0.606;
     const [allEvents, setAllEvents] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
 
