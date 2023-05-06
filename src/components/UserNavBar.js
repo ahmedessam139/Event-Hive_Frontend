@@ -1,5 +1,4 @@
-import UserDropdown from "../components/UserDropdown";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaSignInAlt, FaKey, FaUser, FaSignOutAlt, FaCog, FaEnvelope, FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { useSession } from "next-auth/react";
 import { AppBar, Toolbar, IconButton, Button, Drawer, List, ListItem, ListItemText } from "@mui/material";
@@ -107,16 +106,16 @@ export default function NavBar() {
                     )}
                   </span>
                   {menuOpen && (
-                    <div className="absolute right-0 top-16 bg-white border rounded-md shadow-lg z-10">
-                      <button type="button" className="btn text-gray-700 w-full py-2 px-4 block text-left" onClick={() => router.push("/users/dashboard")}>
+                    <div className="absolute right-0 top-16 bg-white border rounded-md shadow-lg z-10" >
+                      <button type="button" className="btn text-gray-700  w-full hover:bg-gray-100 py-2 px-4 block text-left" onClick={() => router.push("/users/dashboard")}>
                         Dashboard
                         <FaUser className="ml-1" />
                       </button>
-                      <button type="button" className="btn text-gray-700 w-full py-2 px-4 block text-left" onClick={() => router.push("/users/profile")}>
+                      <button type="button" className="btn text-gray-700 w-full hover:bg-gray-100 py-2 px-4 block text-left" onClick={() => router.push("/users/profile")}>
                         Update Profile
                         <FaCog className="ml-1" />
                       </button>
-                      <button type="button" className="btn text-gray-700 w-full py-2 px-4 block text-left" onClick={() => signOut()}>
+                      <button type="button" className="btn text-gray-700 w-full hover:bg-gray-100 py-2 px-4 block text-left" onClick={() => signOut()}>
                         Signout
                         <FaSignOutAlt className="ml-1" />
                       </button>

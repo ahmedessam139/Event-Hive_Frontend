@@ -12,7 +12,6 @@ function EventPage() {
     const router = useRouter();
     const eventId = router.query.eventId;
     const [eventData, setEventData] = useState([]);
-    const [isUserRegistered, setIsUserRegistered] = useState(false);
 
     // function to handle share button click
     const share = () => {
@@ -39,7 +38,9 @@ function EventPage() {
             }
         }
         fetchData();
-    }, [eventId]);
+    }, []);
+
+
 
     if (!eventData || !eventData.cover)
         return <div>loading...</div>;
@@ -53,14 +54,14 @@ function EventPage() {
                     <Cover eventData={eventData} />
 
                     {/* Second div with event details and ticket pricing */}
-                    <EventDataContainer eventData={eventData} isUserRegistered={isUserRegistered} share={share} />
+                    <EventDataContainer eventData={eventData}  />
 
                     {/* Third div with major event details */}
                     <div className="container mt-4 bg-[color:var(--primary-color)]">
                         <div className="container">
                             <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-4">
                                 <EventDescription eventData={eventData} />
-                                <EventPricing eventData={eventData} isUserRegistered={isUserRegistered} />
+                                <EventPricing eventData={eventData}  />
                             </div>
                         </div>
                     </div>

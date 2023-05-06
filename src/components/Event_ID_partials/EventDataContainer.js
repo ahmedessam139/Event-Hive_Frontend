@@ -1,4 +1,31 @@
-function EventDataContainer({ eventData, isUserRegistered, share }) {
+import Popup from 'reactjs-popup';
+import { useSession } from "next-auth/react";
+import { useState, useEffect } from 'react';
+import { FaTimes, } from "react-icons/fa";
+import "reactjs-popup/dist/index.css";
+import BuyingBox from './BuyingBox';
+
+function EventDataContainer({ eventData }) {
+    const [isOpen, setIsOpen] = useState(false);
+    const [eventData_string, setEventData_string] = useState("");
+    
+
+
+    const togglePopup = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const closePopup = () => {
+        setIsOpen(false);
+    };
+
+    useEffect(() => {  
+        setEventData_string(JSON.stringify(eventData));
+        console.log(eventData_string);
+    }, []);
+
+    
+
     return (
         <div className="container bg-white py-4 mt-4 rounded-lg shadow-md">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,7 +63,7 @@ function EventDataContainer({ eventData, isUserRegistered, share }) {
                     </div>
                     <div className="text-left lg:text-right mt-4 lg:mt-0">
                         <button
-                            onClick={() => router.push( `/event/${eventId}/payment` ) }
+                            onClick={togglePopup}
                             className="px-6 py-2 bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] text-white rounded focus:outline-none">
                             Buy Tickets
                         </button>
@@ -54,7 +81,6 @@ function EventDataContainer({ eventData, isUserRegistered, share }) {
                     </div>
                     <div className="flex mt-4 md:mt-0">
                         <button
-                            onClick={share}
                             className="px-6 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
                         >
                             Share
@@ -62,7 +88,26 @@ function EventDataContainer({ eventData, isUserRegistered, share }) {
                     </div>
                 </div>
             </div>
+            <Popup
+                open={isOpen}
+                onClose={closePopup}
+                modal
+                closeOnDocumentClick
+                contentStyle={{ padding: "0rem", borderRadius: "20px", width: "fit-content", maxWidth: "95%", maxHeight: "95%", overflow: "auto" }}
+                className="center-popup  "
+            >
+                <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "-28px" }}>
+                    <button className="m-3 bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] text-white font-bold py-2 px-2 rounded-full"
+                        onClick={togglePopup}
+                    >
+                        <FaTimes size={24} />
+                    </button>
+                </div>
+                <BuyingBox eventData={eventData_string} />
+            </Popup>
         </div>
+
+
 
     );
 }
