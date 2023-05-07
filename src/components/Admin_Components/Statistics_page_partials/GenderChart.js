@@ -15,7 +15,7 @@ const GenderChart = ({ genderPercentage }) => {
     datasets: [
       {
         data: [100- Object.values(genderPercentage)[selectedIndex], Object.values(genderPercentage)[selectedIndex]],
-        backgroundColor: ['#FF6384', '#36A2EB'],
+        backgroundColor: ['rgba(255, 99, 132, 0.88)', 'rgba(53, 162, 235, 0.88)'],
         hoverBackgroundColor: ['#FF6384', '#36A2EB'],
       },
     ],

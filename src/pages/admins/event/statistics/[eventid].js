@@ -20,7 +20,7 @@ const EventStatistics = () => {
                 const response = await axios.get(`http://localhost:3001/eventid_statistics`);
                 if (response.status === 200) {
                     const data = await response.data;
-                    console.log(data.genderPercentage);
+                    console.log(data.ticketsData.Total[0]);
                     setEventData(data);
                 } else {
                     throw new Error("Failed to fetch event data");
@@ -42,7 +42,7 @@ const EventStatistics = () => {
             <Counters counters={eventData.Counters} />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div className="col-span-1 md:col-span-2">
-                    <TicketsChart  />
+                    <TicketsChart ticketsData={eventData.ticketsData} />
                 </div>
                 <div className="col-span-1 md:col-span-1">
                     <GenderChart genderPercentage={eventData.genderPercentage} />
