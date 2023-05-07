@@ -20,6 +20,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
+    "chart.js": "^4.3.0",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.1",
     "js-cookie": "^3.0.5",
@@ -27,8 +28,9 @@
     "next": "13.2.1",
     "next-auth": "^4.19.2",
     "rc-slider": "^10.1.1",
-    "react": "18.2.0",
+    "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.10.0",
@@ -36,6 +38,7 @@
     "react-stripe-checkout": "^2.6.3",
     "reactjs-popup": "^2.0.5",
     "redux": "^4.2.1",
+    "tw-elements": "^1.0.0-beta2",
     "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
