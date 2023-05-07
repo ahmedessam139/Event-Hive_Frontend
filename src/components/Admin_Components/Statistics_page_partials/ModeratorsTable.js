@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import { FaTimes,FaPlus } from "react-icons/fa";
 
-const ModiratorsTable = () => {
-  const [attendees, setAttendees] = useState([
+const ModeratorsTable = () => {
+  const [moderators, setModerators] = useState([
     { id: 1, username: 'john_doe', name: 'John Doe', gender: 'Male' },
     { id: 2, username: 'jane_smith', name: 'Jane Smith', gender: 'Female' },
     { id: 3, username: 'alex_wong', name: 'Alex Wong', gender: 'Male' },
   ]);
 
   const handleRemoveAttendee = (id) => {
-    setAttendees(attendees.filter((attendee) => attendee.id !== id));
+    setModerators(moderators.filter((moderator) => moderator.id !== id));
   };
 
   return (
     <div className="bg-white p-4 m-2 md:m-4 rounded-lg shadow-md">
       <div className="flex justify-between mb-2">
-        <p className="mb-2 text-3xl text-gray-500">Modirators</p>
+        <p className="mb-2 text-3xl text-gray-500">Moderators</p>
         <button
           className="bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] text-white font-bold py-2 px-4 rounded-full"
         >
@@ -33,14 +33,14 @@ const ModiratorsTable = () => {
             </tr>
           </thead>
           <tbody className="text-gray-600 text-sm font-light">
-            {attendees.map((attendee) => (
-              <tr key={attendee.id} className="border-b border-gray-200 hover:bg-gray-100">
-                <td className="py-3 px-6 text-center">{attendee.username}</td>
-                <td className="py-3 px-6 text-center">{attendee.name}</td>
-                <td className="py-3 px-6 text-center">{attendee.gender}</td>
+            {moderators.map((moderator) => (
+              <tr key={moderator.id} className="border-b border-gray-200 hover:bg-gray-100">
+                <td className="py-3 px-6 text-center">{moderator.username}</td>
+                <td className="py-3 px-6 text-center">{moderator.name}</td>
+                <td className="py-3 px-6 text-center">{moderator.gender}</td>
                 <td className="py-3 px-6 text-center">
                   <button className="bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] text-white font-bold py-2 px-4 rounded-full"
-                    onClick={() => handleRemoveAttendee(attendee.id)}
+                    onClick={() => handleRemoveAttendee(moderator.id)}
                   >
                     Remove
                   </button>
@@ -54,4 +54,4 @@ const ModiratorsTable = () => {
   );
 };
 
-export default ModiratorsTable;
+export default ModeratorsTable;

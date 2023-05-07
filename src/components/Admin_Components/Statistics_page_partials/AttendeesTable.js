@@ -13,7 +13,32 @@ const AttendeesTable = () => {
             attendieId: '345343531',
             created_at: '2023-05-01/10:30:00',
         },
-        
+        {
+            id: 2,
+            username: 'jane_smith',
+            name: 'Jane Smith',
+            tickets: 3,
+            status: 'paid',
+            attendieId: '35245634534',
+            created_at: '2023-05-02/12:45:00',
+        },
+        {
+            id: 3,
+            username: 'bob_johnson',
+            name: 'Bob Johnson',
+            tickets: 1,
+            status: 'attended',
+            attendieId: '2536654564',
+            created_at: '2023-05-03/14:20:00',
+        }, {
+            id: 3,
+            username: 'bob_johnson',
+            name: 'Bob Johnson',
+            tickets: 1,
+            status: 'attended',
+            attendieId: '545645486653',
+            created_at: '2023-05-03/14:20:00',
+        },
     ]);
 
     const handleTransactionClick = (attendieId) => {
@@ -45,7 +70,7 @@ const AttendeesTable = () => {
                     </thead>
 
                     <tbody className="text-gray-600 text-sm font-light">
-                        {attendies.slice(0, 2).map((attendie) => (
+                        {attendies.slice(0, 5).map((attendie) => (
                             <tr key={attendie.id} className="border-b border-gray-200 hover:bg-gray-100">
                                 <td className="py-3 px-6 text-center">{attendie.username}</td>
                                 <td className="py-3 px-6 text-center">{attendie.name}</td>
