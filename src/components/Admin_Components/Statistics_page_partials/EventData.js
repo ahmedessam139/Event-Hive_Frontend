@@ -17,11 +17,11 @@ function EventDataContainer({ eventData }) {
     
 
     return (
-        <div className="bg-white py-4 mt-4 rounded-lg shadow-md  md:mx-5">
+        <div className="bg-white py-4 mt-4 m-2 rounded-lg shadow-md  md:m-4">
             <div className="  px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col md:flex-row md:items-center justify-between">
                     <div className="flex flex-col">
-                        <h1 className="text-4xl font-bold text-gray-900 mb-2">
+                        <h1 className="text-4xl font-bold text-gray-700 mb-2">
                             {eventData.name}
                         </h1>
                         <div className="flex flex-col md:flex-row">
