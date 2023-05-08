@@ -6,6 +6,7 @@ import UserNavBar from "../../components/UserNavBar";
 import Footer from "../../components/FooterComponent";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 function EventPage() {
@@ -21,9 +22,9 @@ function EventPage() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch(`http://localhost:3001/eventid`);
-                if (response.ok) {
-                    const data = await response.json();
+                const response = await axios.get('http://localhost:3001/eventid');
+                if (response.status === 200) {
+                    const data = response.data;
                     setEventData(data);
                     setIsUserRegistered(
                         data.participants.some(
@@ -31,12 +32,13 @@ function EventPage() {
                         )
                     );
                 } else {
-                    throw new Error("Failed to fetch event data");
+                    throw new Error('Failed to fetch event data');
                 }
             } catch (error) {
                 console.error(error);
             }
         }
+
         fetchData();
     }, []);
 
@@ -54,14 +56,14 @@ function EventPage() {
                     <Cover eventData={eventData} />
 
                     {/* Second div with event details and ticket pricing */}
-                    <EventDataContainer eventData={eventData}  />
+                    <EventDataContainer eventData={eventData} />
 
                     {/* Third div with major event details */}
                     <div className="container mt-4 bg-[color:var(--primary-color)]">
                         <div className="container">
                             <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-4">
                                 <EventDescription eventData={eventData} />
-                                <EventPricing eventData={eventData}  />
+                                <EventPricing eventData={eventData} />
                             </div>
                         </div>
                     </div>
