@@ -55,7 +55,7 @@ const Dashboard = () => {
                 <Counters Counters={counters} />
                 <UpcomingEvents UpcomingEvents={upcomingEvents} />
                 <PastEvents PastEvents={pastEvents} />
-                <div className="flex justify-center">
+                <div className=" mt-4 flex justify-center">
                     <button type="button" className="btn text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)]" onClick={() => router.push("/users/profile")}>
                         Update Profile
                         <FaCog className="ml-1" />

@@ -18,7 +18,7 @@ const UpcomingEvents = ({ UpcomingEvents }) => {
 
 
   return (
-    <div className="bg-white p-4 m-8 rounded-lg shadow-md">
+    <div className="bg-white p-4 mt-4 md:m-8 rounded-lg shadow-md">
       <div className="flex justify-between mb-2">
         <p className="mb-2 text-3xl text-gray-500">Upcoming</p>
         <button
