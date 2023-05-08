@@ -56,10 +56,8 @@ const PastEvents = ({ PastEvents }) => {
               <th className="py-3 px-6 text-left">Event</th>
               <th className="py-3 px-6 text-left">Venue</th>
               <th className="py-3 px-6 text-left">Date</th>
-              <th className="py-3 px-6 text-left">Ticket Type</th>
-              <th className="py-3 px-6 text-left">Price</th>
-              <th className="py-3 px-6 text-left">Status</th>
-              <th className="py-3 px-6 text-left">Transaction ID</th>
+              <th className="py-3 px-6 text-left">Sold Ticket</th>
+              <th className="py-3 px-6 text-left">Revenue</th>
             </tr>
           </thead>
 
@@ -70,10 +68,8 @@ const PastEvents = ({ PastEvents }) => {
                   <td className="py-3 px-6 text-left whitespace-nowrap">{event.name}</td>
                   <td className="py-3 px-6 text-left">{event.venue}</td>
                   <td className="py-3 px-6 text-left">{event.date}</td>
-                  <td className="py-3 px-6 text-left">{event.ticketType}</td>
-                  <td className="py-3 px-6 text-left">{event.price}</td>
-                  <td className="py-3 px-6 text-left">{event.status}</td>
-                  <td className="py-3 px-6 text-left">{event.transactionId}</td>
+                  <td className="py-3 px-6 text-left">{event.soldTickets}</td>
+                  <td className="py-3 px-6 text-left">{event.revenue}</td>
                 </tr>
               ))
             ) : (
@@ -82,10 +78,8 @@ const PastEvents = ({ PastEvents }) => {
                   <td className="py-3 px-6 text-left whitespace-nowrap">{event.name}</td>
                   <td className="py-3 px-6 text-left">{event.venue}</td>
                   <td className="py-3 px-6 text-left">{event.date}</td>
-                  <td className="py-3 px-6 text-left">{event.ticketType}</td>
-                  <td className="py-3 px-6 text-left">{event.price}</td>
-                  <td className="py-3 px-6 text-left">{event.status}</td>
-                  <td className="py-3 px-6 text-left">{event.transactionId}</td>
+                  <td className="py-3 px-6 text-left">{event.soldTickets}</td>
+                  <td className="py-3 px-6 text-left">{event.revenue}</td>
                 </tr>
               ))
             )}
