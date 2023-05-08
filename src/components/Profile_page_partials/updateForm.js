@@ -87,14 +87,7 @@ function UpdateForm({ }) {
                 <div className="w-full md:w-1/2 px-2 mb-4">
                     <FormControl variant="outlined" sx={TextFieldStyle} className="w-full">
                         <InputLabel id="gender-label">Gender</InputLabel>
-                        <Select
-                            labelId="gender-label"
-                            id="gender"
-                            name="gender"
-                            value={gender}
-                            onChange={handleGenderChange}
-                            label="Gender"
-                        >
+                        <Select labelId="gender-label" id="gender" name="gender" value={gender} onChange={handleGenderChange} label="Gender" >
                             <MenuItem value="male" >Male </MenuItem >
                             <MenuItem value="female">Female </MenuItem >
                             <MenuItem value="other">Other </MenuItem >
