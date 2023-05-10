@@ -19,7 +19,6 @@ const addevent = () => {
                     <AddEventForm />
                 </div>
             </div>
-            <SeatsMap  />
             <Footer />
         </div>
     )

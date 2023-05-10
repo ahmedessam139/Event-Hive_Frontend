@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { TextField } from '@mui/material';
-import { FaPlus } from 'react-icons/fa';
+import { FaPlus , FaTimes } from 'react-icons/fa';
+import SeatsMap from './SeatsMap';
+import Popup from 'reactjs-popup';
+import "reactjs-popup/dist/index.css";
+
 
 function AddEventForm() {
     const [eventName, setEventName] = useState('');
@@ -10,7 +14,12 @@ function AddEventForm() {
     const [venue, setVenue] = useState('');
     const [description, setDescription] = useState('');
     const [ticketTypes, setTicketTypes] = useState([
-        { name: '', price: '', limit: '', seated: false, seats: "{}" },
+        { name: '', price: '', limit: '', seated: false, seats: {
+            A: [0, 0, 0],
+            B: [0, 0, 0],
+            C: [0, 0, 0],
+            D: [0, 0, 0]
+          } },
     ]);
 
     const handleTicketTypeChange = (index, field, value) => {
@@ -22,7 +31,12 @@ function AddEventForm() {
     const handleAddTicketType = () => {
         setTicketTypes([
             ...ticketTypes,
-            { name: '', price: '', limit: '', seated: false, seats: "{}"},
+            { name: '', price: '', limit: '', seated: false, seats: {
+                "A": [0, 0, 3],
+                "B": [0, 0, 3],
+                "C": [0, 0, 0],
+                "D": [0, 0, 0]
+              } },
         ]);
     };
 
@@ -32,11 +46,29 @@ function AddEventForm() {
         setTicketTypes(updatedTicketTypes);
     };
 
+    const handleSeatsSet = (index, seats ,limit) => {
+        const updatedTicketTypes = [...ticketTypes];
+        updatedTicketTypes[index].seats = seats;
+        updatedTicketTypes[index].limit = limit;
+        setTicketTypes(updatedTicketTypes);
+    };
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [index, setIndex] = useState(0);
+
+    const togglePopup = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const closePopup = () => {
+        setIsOpen(false);
+    };
+    
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
+
         const formData = {
             eventName,
             coverImage,
@@ -46,7 +78,7 @@ function AddEventForm() {
             description,
             ticketTypes,
         };
-    
+
         console.log(formData);
     };
 
@@ -128,7 +160,10 @@ function AddEventForm() {
                                         type="button"
                                         className={`btn text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full sm:w-auto sm:ml-4 ${!ticketType.seated ? 'opacity-50 cursor-not-allowed' : ''
                                             }`}
-                                        onClick={() => handleRemoveTicketType(index)}
+                                        onClick={() => { 
+                                            togglePopup(); 
+                                            setIndex(index); 
+                                          }}
                                         disabled={!ticketType.seated}
                                     >
                                         Seats
@@ -145,6 +180,25 @@ function AddEventForm() {
                     </tbody>
                 </table>
             </div>
+
+            <Popup
+                open={isOpen}
+                onClose={closePopup}
+                modal
+                closeOnDocumentClick
+                contentStyle={{ padding: "0rem", borderRadius: "20px", width: "fit-content", maxWidth: "95%", maxHeight: "95%", overflow: "auto" }}
+                className="center-popup  "
+            >
+                <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "-28px" }}>
+                    <button className="m-3 bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] text-white font-bold py-2 px-2 rounded-full"
+                        onClick={togglePopup}
+                    >
+                        <FaTimes size={24} />
+                    </button>
+                </div>
+                <SeatsMap _seats={ticketTypes[index].seats} _index={index} _setSeats={handleSeatsSet} />
+
+            </Popup>
 
             <div>
                 <button type="submit" className="btn text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full  sm:w-auto sm:ml-4"  >
