@@ -5,14 +5,21 @@ import GenderChart from "../../../../components/Admin_Components/Statistics_page
 import ModeratorsTable from "../../../../components/Admin_Components/Statistics_page_partials/ModeratorsTable";
 import AttendeesTable from "../../../../components/Admin_Components/Statistics_page_partials/AttendeesTable";
 import TicketsChart from "../../../../components/Admin_Components/Statistics_page_partials/TicketsChart";
-
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
+
 
 
 const EventStatistics = () => {
 
     const [eventData, setEventData] = useState([]);
+
+    const router = useRouter();
+
+
+    const eventId = router.query.eventId;
+
 
     useEffect(() => {
         async function fetchData() {

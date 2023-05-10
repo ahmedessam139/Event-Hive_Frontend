@@ -18,10 +18,9 @@ function SignInForm({ }) {
     const router = useRouter();
     const { data, status } = useSession();
 
-    //if there is a session, redirect to protected page
     useEffect(() => {
-        if (status === "authenticated") router.push('/protected');
-        console.log(status);
+        if (status === "authenticated" && data.user.role === "user") router.push('/users/home');
+        else if (status === "authenticated" && data.user.role === "admin") router.push('/admins');
     }, [status]);
 
     const handleSubmit = async (e) => {
@@ -46,7 +45,7 @@ function SignInForm({ }) {
     };
 
 
-    if (status === "authenticated") return (
+    if (status === "authenticated" || status === "Loading") return (
         <div className="flex justify-center w-full">
             <FadeLoader color="var(--darker-secondary-color)" loading={true} size={150} />
         </div>

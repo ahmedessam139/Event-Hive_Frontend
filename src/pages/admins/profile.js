@@ -1,10 +1,11 @@
 import AdminNavBar from "../../components/Admin_Components/AdminNavBar";
 import UpdateForm from "../../components/Profile_page_partials/updateForm";
-import ContainerAndLogo from "../../components/ContainerAndLogo";
 import Footer from "../../components/FooterComponent";
 
 
 export default function Profile() {
+
+  
 
 
     return (

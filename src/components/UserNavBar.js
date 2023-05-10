@@ -1,21 +1,22 @@
-import { useState } from "react";
-import { FaSignInAlt, FaKey, FaUser, FaSignOutAlt, FaCog, FaEnvelope, FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { useState ,useEffect } from "react";
+import { FaSignInAlt, FaKey, FaUser, FaSignOutAlt, FaCog } from "react-icons/fa";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { signOut } from "next-auth/react";
 import { IoMenu } from "react-icons/io5";
-import { FaRegCalendarAlt, FaPlus } from "react-icons/fa";
 
 export default function NavBar() {
   const router = useRouter();
   const { status, data } = useSession();
 
-  const [singedIn, setSignedIn] = useState(false);
-  const [userData, setUserData] = useState({});
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+
+    useEffect(() => {
+        if(status != "loading"){ 
+            if (status !== "authenticated" || data.user.role !== "user") router.push('/auth/signin');
+        }
+    }, [status]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -82,20 +83,20 @@ export default function NavBar() {
 
             <ul className={`md:flex md:items-center md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 py-2 md:opacity-100 ${isMenuOpen ? 'opacity-100 z-10 right' : 'opacity-100 top-[-400px]'}  `} >                
                 <li className="mx-2 my-6 md:my-0" onClick={() => router.push("/users/profile")}>
-                    <a href="#" className="text text-gray-600  hover:text-[color:var(--secondary-color)] duration-500 flex justify-center items-center">
+                    <a  className="text text-gray-600  hover:text-[color:var(--secondary-color)] duration-500 flex justify-center items-center">
                         Update Profile
                         <FaCog className='mt-1 ml-1'/>
                     </a>
                 </li>
                 
-                <li className=" my-2 md:my-0">
-                    <button type="button" className="btn text-sm text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full mb-4 sm:w-auto sm:mb-0" onClick={() => router.push("/users/dashboard")}>
+                <li className="mx-3 my-2 md:m-0">
+                    <button type="button" className="btn text-sm text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full mb-4 sm:w-auto sm:mb-0 gap-1" onClick={() => router.push("/users/dashboard")}>
                         Dashboard
                         <FaUser />
                     </button>
                 </li>
-                <li className="mr-2 my-2 md:my-0 bg-white">
-                <button type="button" className="btn text-sm text-white bg-[color:var(--gray-color)] hover:bg-[color:var(--light-gray)] w-full sm:w-auto sm:ml-4" onClick={() => signOut()}>
+                <li className="mx-3 my-2 md:m-0 bg-white">
+                <button type="button" className="btn text-sm text-white bg-[color:var(--gray-color)] hover:bg-[color:var(--light-gray)] w-full sm:w-auto sm:ml-4 gap-1" onClick={() => signOut()}>
                     Signout
                     <FaSignOutAlt />
                 </button>

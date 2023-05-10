@@ -1,5 +1,4 @@
 import AdminNavBar from "../../components/Admin_Components/AdminNavBar";
-import EventCard from "../../components/Admin_Components/Home_page_partials/EventCard";
 import EventsContainer from "../../components/Admin_Components/Home_page_partials/EventsContainer";
 import FooterComponent from "../../components/FooterComponent";
 import { useEffect, useState } from "react";

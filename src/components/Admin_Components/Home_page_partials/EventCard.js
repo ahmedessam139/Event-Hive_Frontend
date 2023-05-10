@@ -2,13 +2,14 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { FaUsers } from "react-icons/fa";
 
+
 const EventCard = ({ event }) => {
     const router = useRouter();
 
     return (
         <div
             onClick={() => {
-                router.push(`/admin/event/${event.event_id}`);
+                router.push(`/admins/event/${event.event_id}`);
             }}
             className="hover:scale-105 cursor-pointer transition-all bg-[color:var(--white-color)] rounded-lg shadow-md"
             style={{

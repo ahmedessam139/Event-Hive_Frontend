@@ -6,6 +6,7 @@ import UserNavBar from "../../../components/Admin_Components/AdminNavBar";
 import Footer from "../../../components/FooterComponent";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import axios from 'axios';
 
 
 function EventPage() {
@@ -20,30 +21,26 @@ function EventPage() {
 
     useEffect(() => {
         async function fetchData() {
-            try {
-                const response = await fetch(`http://localhost:3001/eventid`);
-                if (response.ok) {
-                    const data = await response.json();
-                    setEventData(data);
-                    setIsUserRegistered(
-                        data.participants.some(
-                            (participant) => participant.id === userId
-                        )
-                    );
-                } else {
-                    throw new Error("Failed to fetch event data");
-                }
-            } catch (error) {
-                console.error(error);
+          try {
+            const response = await axios.get(`http://localhost:3001/eventid`);
+            if (response.status === 200) {
+              const data = response.data;
+              setEventData(data);
+              setIsUserRegistered(
+                data.participants.some((participant) => participant.id === userId)
+              );
+            } else {
+              throw new Error("Failed to fetch event data");
             }
+          } catch (error) {
+            console.error(error);
+          }
         }
         fetchData();
-        
-    }, []);
+      }, []);
+      
 
-    useEffect(() => {
-        console.log(eventData.description);
-    });
+    
 
 
 

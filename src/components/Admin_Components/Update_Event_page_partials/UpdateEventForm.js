@@ -1,26 +1,40 @@
-import { useState } from 'react';
 import { TextField } from '@mui/material';
-import { FaPlus , FaTimes } from 'react-icons/fa';
+import { FaPlus, FaTimes } from 'react-icons/fa';
 import SeatsMap from './SeatsMap';
+import LoadingComponent from '../../LoadingComponent';
 import Popup from 'reactjs-popup';
 import "reactjs-popup/dist/index.css";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-
-function AddEventForm() {
+function UpdateEventForm() {
     const [eventName, setEventName] = useState('');
     const [coverImage, setCoverImage] = useState('');
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [venue, setVenue] = useState('');
     const [description, setDescription] = useState('');
-    const [ticketTypes, setTicketTypes] = useState([
-        { name: '', price: '', limit: '', seated: false, seats: {
-            A: [0, 0, 0],
-            B: [0, 0, 0],
-            C: [0, 1, 0],
-            D: [0, 0, 0]
-          } },
-    ]);
+    const [ticketTypes, setTicketTypes] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/update_event')
+            .then(response => {
+                setEventName(response.data.eventName);
+                setCoverImage(response.data.coverImage);
+                setDate(response.data.date);
+                setTime(response.data.time);
+                setVenue(response.data.venue);
+                setDescription(response.data.description);
+                setTicketTypes(response.data.ticketTypes);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, []);
+
+
+
+
 
     const handleTicketTypeChange = (index, field, value) => {
         const updatedTicketTypes = [...ticketTypes];
@@ -31,12 +45,14 @@ function AddEventForm() {
     const handleAddTicketType = () => {
         setTicketTypes([
             ...ticketTypes,
-            { name: '', price: '', limit: '', seated: false, seats: {
-                "A": [0, 0, 3],
-                "B": [0, 0, 3],
-                "C": [0, 0, 0],
-                "D": [0, 0, 0]
-              } },
+            {
+                name: '', price: '', limit: '', seated: false, seats: {
+                    "A": [0, 0, 3],
+                    "B": [0, 0, 3],
+                    "C": [0, 0, 0],
+                    "D": [0, 0, 0]
+                }
+            },
         ]);
     };
 
@@ -46,7 +62,7 @@ function AddEventForm() {
         setTicketTypes(updatedTicketTypes);
     };
 
-    const handleSeatsSet = (index, seats ,limit) => {
+    const handleSeatsSet = (index, seats, limit) => {
         const updatedTicketTypes = [...ticketTypes];
         updatedTicketTypes[index].seats = seats;
         updatedTicketTypes[index].limit = limit;
@@ -63,7 +79,7 @@ function AddEventForm() {
     const closePopup = () => {
         setIsOpen(false);
     };
-    
+
 
 
     const handleSubmit = (e) => {
@@ -81,6 +97,14 @@ function AddEventForm() {
 
         console.log(formData);
     };
+
+    if (ticketTypes.length === 0) {
+        return (
+            <div className="flex flex-wrap -mx-2">
+             <LoadingComponent />
+            </div>
+        );
+    }
 
     return (
         <form onSubmit={handleSubmit}>
@@ -152,7 +176,7 @@ function AddEventForm() {
                                         className="outline-none border rounded-md py-1 px-3 bg-[color:var(--darker-secondary-color)] border-[color:var(--darker-secondary-color)]"
                                         type="checkbox"
                                         checked={ticketType.seated}
-                                        onChange={(e) => handleTicketTypeChange(index, 'seated', e.target.checked)}
+                                        
                                     />
                                 </td>
                                 <td className="py-3 text-center">
@@ -160,10 +184,10 @@ function AddEventForm() {
                                         type="button"
                                         className={`btn text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full sm:w-auto sm:ml-4 ${!ticketType.seated ? 'opacity-50 cursor-not-allowed' : ''
                                             }`}
-                                        onClick={() => { 
-                                            togglePopup(); 
-                                            setIndex(index); 
-                                          }}
+                                        onClick={() => {
+                                            togglePopup();
+                                            setIndex(index);
+                                        }}
                                         disabled={!ticketType.seated}
                                     >
                                         Seats
@@ -196,13 +220,19 @@ function AddEventForm() {
                         <FaTimes size={24} />
                     </button>
                 </div>
-                <SeatsMap _seats={ticketTypes[index].seats} _index={index} _setSeats={handleSeatsSet} _togglePopUp={togglePopup} />
-
+                {ticketTypes.length > 0 && (
+                    <SeatsMap
+                        _seats={ticketTypes[index].seats}
+                        _index={index}
+                        _setSeats={handleSeatsSet}
+                        _togglePopUp={togglePopup}
+                    />
+                )}
             </Popup>
 
             <div>
                 <button type="submit" className="btn text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full  sm:w-auto sm:ml-4"  >
-                    Add Event
+                    Update Event
                 </button>
             </div>
         </form>
@@ -219,5 +249,5 @@ const TextFieldStyle =
     }
 }
 
-export default AddEventForm;
+export default UpdateEventForm;
 

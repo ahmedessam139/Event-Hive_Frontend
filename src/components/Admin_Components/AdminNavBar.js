@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoMenu } from 'react-icons/io5';
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
@@ -8,6 +8,16 @@ import { FaUser, FaSignOutAlt, FaCog ,FaPlus,FaRegCalendarAlt } from 'react-icon
 function AdminNavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const router = useRouter();
+    const {status , data } = useSession();
+
+    useEffect(() => {
+        if(status != "loading"){ 
+            console.log(status , data.user.role);
+            if (status !== "authenticated" || data.user.role !== "admin") router.push('/auth/signin');
+        }
+    }, [status]);
+
+
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -27,35 +37,35 @@ function AdminNavBar() {
                 </span>
             </div>
 
-            <ul className={`md:flex md:items-center md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 ${isMenuOpen ? 'opacity-100 z-10 top-[80px]' : 'opacity-0 top-[-400px]'} transition-all ease-in duration-500`} >
+            <ul className={`md:flex md:items-center md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0  md:opacity-100 ${isMenuOpen ? 'opacity-100 z-10 top-[80px]' : 'opacity-0 top-[-400px]'} transition-all ease-in duration-500`} >
                 <li className="mx-2 my-6 md:my-0">
-                    <a href="#" className="text text-gray-600 hover:text-[color:var(--secondary-color)] duration-500 flex whitespace-nowrap">
+                    <a href="/admins" className="text text-gray-600 hover:text-[color:var(--secondary-color)] duration-500 flex whitespace-nowrap">
                         My Events
                         <FaRegCalendarAlt className='mt-1 ml-1'/>
                     </a>
                 </li>
                 <li className="mx-2 my-6 md:my-0">
-                    <a href="#" className="text text-gray-600 hover:text-[color:var(--secondary-color)] duration-500 flex whitespace-nowrap">
+                    <a href="/admins/event/addevent" className="text text-gray-600 hover:text-[color:var(--secondary-color)] duration-500 flex whitespace-nowrap">
                         Create Event
                         <FaPlus className='mt-1 ml-1'/>
                     </a>
                 </li>
 
                 <li className="mx-2 my-6 md:my-0 "onClick={() => router.push("/admins/profile")}>
-                    <a href="#" className="text text-gray-600  hover:text-[color:var(--secondary-color)] duration-500 flex whitespace-nowrap">
+                    <a href="/admins/profile" className="text text-gray-600  hover:text-[color:var(--secondary-color)] duration-500 flex whitespace-nowrap">
                         Update Profile
                         <FaCog className='mt-1 ml-1'/>
                     </a>
                 </li>
                 
                 <li className="my-6 md:my-0">
-                    <button type="button" className="btn text-sm text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full mb-4 sm:w-auto sm:mb-0 whitespace-nowrap" onClick={() => router.push("/users/dashboard")}>
+                    <button type="button" className="btn gap-1 text-sm text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full mb-4 sm:w-auto sm:mb-0 whitespace-nowrap" onClick={() => router.push("/admins/dashboard")}>
                         Dashboard
                         <FaUser />
                     </button>
                 </li>
                 <li className=" my-6 md:my-0">
-                    <button type="button" className="btn text-sm text-white bg-[color:var(--gray-color)] hover:bg-[color:var(--light-gray)] w-full sm:w-auto sm:ml-4 whitespace-nowrap" onClick={() => signOut()}>
+                    <button type="button" className="btn gap-1 text-sm text-white bg-[color:var(--gray-color)] hover:bg-[color:var(--light-gray)] w-full sm:w-auto sm:ml-4 whitespace-nowrap" onClick={() => signOut()}>
                         Signout
                         <FaSignOutAlt/>
                     </button>

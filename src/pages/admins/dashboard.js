@@ -10,7 +10,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { FaCog } from "react-icons/fa";
+
+
 const Dashboard = () => {
     const [loading, setLoading] = useState(true);
     const [counters, setCounters] = useState([]);
@@ -18,8 +19,14 @@ const Dashboard = () => {
     const [pastEvents, setPastEvents] = useState([]);
     const [moderators, setmoderators] = useState([]);
 
-    const { status, data } = useSession();
+    const {status , data } = useSession();
 
+    useEffect(() => {
+        if(status != "loading"){ 
+            console.log(status , data.user.role);
+            if (status !== "authenticated" || data.user.role !== "admin") router.push('/auth/signin');
+        }
+    }, [status]);
 
     const dashboardData = async () => {
         try {
@@ -44,9 +51,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         dashboardData();
-        if (status === "unauthenticated") {
-            router.push("/auth/signin");
-        }
+        
     }, [status]);
 
     if (loading || status != "authenticated") {

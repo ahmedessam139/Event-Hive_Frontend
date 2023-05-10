@@ -1,12 +1,9 @@
+import AdminNavBar from "../../../../components/Admin_Components/AdminNavBar"
+import UpdateEventForm from "../../../../components/Admin_Components/Update_Event_page_partials/UpdateEventForm"
+import Footer from "../../../../components/FooterComponent"
 
-import AdminNavBar from "../../../components/Admin_Components/AdminNavBar"
-import AddEventForm from "../../../components/Admin_Components/Add_Event_page_partials/AddEventForm"
-import Footer from "../../../components/FooterComponent"
+const updateevent = () => {
 
-const addevent = () => {
-
-
-    
     return (
         <div>
 
@@ -18,7 +15,7 @@ const addevent = () => {
                             <img src="/favicon_io/eventhive-logo.svg" width={500} className="" alt="Logo" />
                         </a>
                     </div>
-                    <AddEventForm />
+                    <UpdateEventForm />
                 </div>
             </div>
             <Footer />
@@ -26,4 +23,4 @@ const addevent = () => {
     )
 }
 
-export default addevent
+export default updateevent
