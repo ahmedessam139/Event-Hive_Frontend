@@ -1,6 +1,7 @@
 
 import AdminNavBar from "../../../components/Admin_Components/AdminNavBar"
 import AddEventForm from "../../../components/Admin_Components/Add_Event_page_partials/AddEventForm"
+import SeatsMap from "../../../components/Admin_Components/Add_Event_page_partials/SeatsMap"
 import Footer from "../../../components/FooterComponent"
 
 const addevent = () => {
@@ -18,6 +19,7 @@ const addevent = () => {
                     <AddEventForm />
                 </div>
             </div>
+            <SeatsMap  />
             <Footer />
         </div>
     )
