@@ -12,11 +12,7 @@ export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 
-    useEffect(() => {
-        if(status != "loading"){ 
-            if (status !== "authenticated" || data.user.role !== "user") router.push('/auth/signin');
-        }
-    }, [status]);
+   
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

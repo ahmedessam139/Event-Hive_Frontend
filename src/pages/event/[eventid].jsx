@@ -6,7 +6,7 @@ import UserNavBar from "../../components/UserNavBar";
 import Footer from "../../components/FooterComponent";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../utils/axios";
 
 
 function EventPage() {
@@ -22,7 +22,7 @@ function EventPage() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://localhost:3001/eventid');
+                const response = await axios.get('/eventid');
                 if (response.status === 200) {
                     const data = response.data;
                     setEventData(data);
