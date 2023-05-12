@@ -1,9 +1,13 @@
 import AdminNavBar from "../../components/Admin_Components/AdminNavBar";
 import EventsContainer from "../../components/Admin_Components/Home_page_partials/EventsContainer";
 import FooterComponent from "../../components/FooterComponent";
+import LoadingComponent from "../../components/LoadingComponent";
 import { useEffect, useState } from "react";
 import { TextField } from '@mui/material';
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { FaSearchengin } from "react-icons/fa";
+import axios from "../../utils/axios";
 
 
 
@@ -15,13 +19,14 @@ const AdminsHome = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:3001/events');
-                const data = await response.json();
+                const response = await axios.get('http://localhost:3001/events');
+                const data = response.data;
                 setAllEvents(data);
             } catch (error) {
                 console.error(error);
             }
         };
+    
         fetchData();
     }, []);
 
@@ -33,6 +38,33 @@ const AdminsHome = () => {
     const handleSearchQueryChange = (event) => {
         setSearchQuery(event.target.value);
     };
+    const { status, data } = useSession();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (status === "authenticated") {
+            if (data.user.role === "admin") {
+                return;
+            } else {
+                router.push("/auth/signin");
+            }
+        }
+        if (status === "unauthenticated") {
+            router.push("/auth/signin");
+        }
+
+    }, [status]);
+
+
+    // Check if the user exists and is not authenticated
+    if (status === "unauthenticated" || (status === "authenticated" && !data)) {
+        return <LoadingComponent />;
+    }
+
+    // Check if the user exists and is not an admin
+    if (status === "authenticated" && data && data.user.role !== "admin") {
+        return <LoadingComponent />;
+    }
 
 
     return (

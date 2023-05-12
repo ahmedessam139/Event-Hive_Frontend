@@ -176,7 +176,7 @@ function UpdateEventForm() {
                                         className="outline-none border rounded-md py-1 px-3 bg-[color:var(--darker-secondary-color)] border-[color:var(--darker-secondary-color)]"
                                         type="checkbox"
                                         checked={ticketType.seated}
-                                        
+                                        onChange={(e) => handleTicketTypeChange(index, 'seated', e.target.checked)}
                                     />
                                 </td>
                                 <td className="py-3 text-center">

@@ -4,8 +4,10 @@ import EventDescription from '../../components/Event_ID_partials/EventDescriptio
 import Cover from '../../components/Event_ID_partials/Cover';
 import UserNavBar from "../../components/UserNavBar";
 import Footer from "../../components/FooterComponent";
+import LoadingComponent from "../../components/LoadingComponent";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 import axios from "../../utils/axios";
 
 
@@ -42,10 +44,32 @@ function EventPage() {
         fetchData();
     }, []);
 
+    const { status, data } = useSession();
+
+    useEffect(() => {
+        if (status === "authenticated") {
+            if (data.user.role === "admin") {
+                router.push("/auth/signin");
+            } else {
+                return;
+            }
+        }
+       
+
+    }, [status]);
+
+
+   
+
+    // Check if the user exists and is not an admin
+    if (status === "authenticated" && data && data.user.role == "admin") {
+        return <LoadingComponent />;
+    }
+
 
 
     if (!eventData || !eventData.cover)
-        return <div>loading...</div>;
+        return <LoadingComponent />;
     else
         return (
             <div className="bg-[color:var(--primary-color)]">

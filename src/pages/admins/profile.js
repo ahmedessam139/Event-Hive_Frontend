@@ -1,11 +1,42 @@
 import AdminNavBar from "../../components/Admin_Components/AdminNavBar";
 import UpdateForm from "../../components/Profile_page_partials/updateForm";
 import Footer from "../../components/FooterComponent";
+import LoadingComponent from "../../components/LoadingComponent";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 
 export default function Profile() {
 
   
+  const { status, data } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+      if (status === "authenticated") {
+          if (data.user.role === "admin") {
+              return;
+          } else {
+              router.push("/auth/signin");
+          }
+      }
+      if (status === "unauthenticated") {
+          router.push("/auth/signin");
+      }
+
+  }, [status]);
+
+
+  // Check if the user exists and is not authenticated
+  if (status === "unauthenticated" || (status === "authenticated" && !data)) {
+      return <LoadingComponent />;
+  }
+
+  // Check if the user exists and is not an admin
+  if (status === "authenticated" && data && data.user.role !== "admin") {
+      return <LoadingComponent />;
+  }
 
 
     return (

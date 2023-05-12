@@ -13,7 +13,6 @@ import { useRouter } from "next/router";
 
 
 const Dashboard = () => {
-    const [loading, setLoading] = useState(true);
     const [counters, setCounters] = useState([]);
     const [upcomingEvents, setUpcomingEvents] = useState([]);
     const [pastEvents, setPastEvents] = useState([]);
@@ -21,12 +20,7 @@ const Dashboard = () => {
 
     const {status , data } = useSession();
 
-    useEffect(() => {
-        if(status != "loading"){ 
-            console.log(status , data.user.role);
-            if (status !== "authenticated" || data.user.role !== "admin") router.push('/auth/signin');
-        }
-    }, [status]);
+   
 
     const dashboardData = async () => {
         try {
@@ -54,9 +48,36 @@ const Dashboard = () => {
         
     }, [status]);
 
-    if (loading || status != "authenticated") {
+
+    useEffect(() => {
+        if (status === "authenticated") {
+            if (data.user.role === "admin") {
+                return;
+            } else {
+                router.push("/auth/signin");
+            }
+        }
+        if (status === "unauthenticated") {
+            router.push("/auth/signin");
+        }
+
+    }, [status]);
+
+
+    // Check if the user exists and is not authenticated
+    if (status === "unauthenticated" || (status === "authenticated" && !data)) {
         return <LoadingComponent />;
     }
+
+    // Check if the user exists and is not an admin
+    if (status === "authenticated" && data && data.user.role !== "admin") {
+        return <LoadingComponent />;
+    }
+    
+    if (counters.length === 0) {
+        return <LoadingComponent />;
+    }
+
     return (
         <>
             <div className="bg-[color:var(--primary-color)]">

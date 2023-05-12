@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { FaKey } from 'react-icons/fa';
 import { TextField, Alert, FormControl, MenuItem, Select, Button, InputLabel } from '@mui/material';
-import axios from 'axios';
+import axios from '../../utils/axios';
 import { useSession } from 'next-auth/react';
 import { FadeLoader } from 'react-spinners';
 

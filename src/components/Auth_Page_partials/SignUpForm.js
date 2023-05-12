@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { FaEye, FaEyeSlash, FaKey } from 'react-icons/fa';
 import { TextField,Alert } from '@mui/material';
 import axios from 'axios';
+import { useRouter } from "next/router";
+import LoadingComponent from '../LoadingComponent';
 
 
 function SignUpForm({ }) {
@@ -19,6 +21,13 @@ function SignUpForm({ }) {
     const handleMobileNumberChange = (e) => setMobileNumber(e.target.value);
     const handlePasswordChange = (e) => setPassword(e.target.value);
     const handleShowPasswordChange = () => setShowPassword(!showPassword);
+    const router = useRouter();
+    const { data, status } = useSession();
+
+    useEffect(() => {
+        if (status === "authenticated" && data.user.role === "user") router.push('/users/home');
+        else if (status === "authenticated" && data.user.role === "admin") router.push('/admins');
+    }, [status]);
     
 
     const handleSubmit = async (e) => {
@@ -44,6 +53,15 @@ function SignUpForm({ }) {
         }
     }
 
+
+    if (status === "authenticated" || status === "Loading") {
+
+        return (
+            <LoadingComponent />
+
+        );
+
+    }
 
 
     return (

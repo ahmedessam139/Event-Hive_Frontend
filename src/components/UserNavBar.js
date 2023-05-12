@@ -10,6 +10,7 @@ export default function NavBar() {
   const { status, data } = useSession();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
 
 
    
@@ -38,7 +39,7 @@ export default function NavBar() {
           </span>
         </div>
 
-        <ul className={`md:flex md:items-center md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 ${isMenuOpen ? 'opacity-100 top-[80px]' : 'opacity-0 top-[-400px]'} transition-all ease-in duration-500`} >
+        <ul className={`md:flex md:items-center md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 ${isMenuOpen ? 'opacity-100 z-10 top-[80px]' : 'opacity-0 top-[-400px]'} transition-all ease-in duration-500`} >
           
 
           <li className="mx-2 my-6 md:my-0">
@@ -78,7 +79,7 @@ export default function NavBar() {
             </div>
 
             <ul className={`md:flex md:items-center md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 py-2 md:opacity-100 ${isMenuOpen ? 'opacity-100 z-10 right' : 'opacity-100 top-[-400px]'}  `} >                
-                <li className="mx-2 my-6 md:my-0" onClick={() => router.push("/users/profile")}>
+                <li className="mx-2 my-6 md:my-0 cursor-pointer " onClick={() => router.push("/users/profile")}>
                     <a  className="text text-gray-600  hover:text-[color:var(--secondary-color)] duration-500 flex justify-center items-center">
                         Update Profile
                         <FaCog className='mt-1 ml-1'/>
@@ -86,7 +87,7 @@ export default function NavBar() {
                 </li>
                 
                 <li className="mx-3 my-2 md:m-0">
-                    <button type="button" className="btn text-sm text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full mb-4 sm:w-auto sm:mb-0 gap-1" onClick={() => router.push("/users/dashboard")}>
+                    <button type="button" className="btn  text-sm text-white bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] w-full mb-4 sm:w-auto sm:mb-0 gap-1" onClick={() => router.push("/users/dashboard")}>
                         Dashboard
                         <FaUser />
                     </button>

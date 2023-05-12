@@ -34,9 +34,7 @@ function SignInForm({ }) {
             if (res.error) {
                 console.log(res);
                 setError(res.error); 
-            } else {
-                router.push('/protected');
-            }
+            } 
                 
         } catch (error) {
             console.log(error);
@@ -50,6 +48,7 @@ function SignInForm({ }) {
             <FadeLoader color="var(--darker-secondary-color)" loading={true} size={150} />
         </div>
     )
+    if (status === "unauthenticated"){
     return (
         <form onSubmit={handleSubmit}>
 
@@ -80,6 +79,7 @@ function SignInForm({ }) {
             </div>
         </form>
     );
+}
 }
 
 const TextFieldStyle =

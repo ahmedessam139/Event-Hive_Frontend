@@ -2,9 +2,13 @@ import UserNavBar from "../../components/UserNavBar";
 import EventsContainer from "../../components/Home_Page_partials/EventsContainer";
 import FooterComponent from "../../components/FooterComponent";
 import Parteners from "../../components/Home_Page_partials/Parteners";
+import LoadingComponent from "../../components/LoadingComponent";
 import { useEffect, useState } from "react";
 import { TextField } from '@mui/material';
 import { FaSearchengin } from "react-icons/fa";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import axios from "../../utils/axios"
 
 function Home() {
     const [allEvents, setAllEvents] = useState([]);
@@ -13,13 +17,14 @@ function Home() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:3001/events');
-                const data = await response.json();
+                const response = await axios.get('http://localhost:3001/events');
+                const data = response.data;
                 setAllEvents(data);
             } catch (error) {
                 console.error(error);
             }
         };
+    
         fetchData();
     }, []);
 
@@ -31,6 +36,29 @@ function Home() {
     const handleSearchQueryChange = (event) => {
         setSearchQuery(event.target.value);
     };
+
+    const { status, data } = useSession();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (status === "authenticated") {
+            if (data.user.role === "admin") {
+                router.push("/auth/signin");
+            } else {
+                return;
+            }
+        }
+       
+
+    }, [status]);
+
+
+   
+
+    // Check if the user exists and is not an admin
+    if (status === "authenticated" && data && data.user.role == "admin") {
+        return <LoadingComponent />;
+    }
 
     return (
         <div className=" bg-[color:var(--primary-color)] h-full">

@@ -4,17 +4,16 @@ import UpcomingEvents from "../../components/User_Dashboard_partials/UpcomingEve
 import PastEvents from "../../components/User_Dashboard_partials/PastEvents";
 import LoadingComponent from "../../components/LoadingComponent";
 import Footer from "../../components/FooterComponent";
-import axios from "axios";
+import axios from "../../utils/axios";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { FaCog } from "react-icons/fa";
 const Dashboard = () => {
-    const [loading, setLoading] = useState(true);
     const [counters, setCounters] = useState([]);
     const [upcomingEvents, setUpcomingEvents] = useState([]);
     const [pastEvents, setPastEvents] = useState([]);
-    const { status, data } = useSession();
+
 
 
     const dashboardData = async () => {
@@ -27,7 +26,6 @@ const Dashboard = () => {
             setCounters(res.data.Counters);
             setUpcomingEvents(res.data.UpcomingEvents);
             setPastEvents(res.data.PastEvents);
-            setLoading(false); // set loading to false when data is fetched
         } catch (error) {
             console.log(error);
 
@@ -35,18 +33,35 @@ const Dashboard = () => {
 
     };
 
+    useEffect(() => {
+        dashboardData();
+    }, []);
+
+    const { status, data } = useSession();
     const router = useRouter();
 
     useEffect(() => {
-        dashboardData();
+        if (status === "authenticated") {
+            if (data.user.role === "user") {
+                return;
+            } else {
+                router.push("/auth/signin");
+            }
+        }
         if (status === "unauthenticated") {
             router.push("/auth/signin");
         }
+
     }, [status]);
 
-    if (loading || status != "authenticated") {
-        return <LoadingComponent />;
+
+    if (status === "unauthenticated" || status === "Loading") {
+
+        return (
+            <LoadingComponent />
+        )
     }
+
     return (
         <>
             <div className="bg-[color:var(--primary-color)]">
