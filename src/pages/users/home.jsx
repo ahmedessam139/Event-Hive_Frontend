@@ -10,23 +10,11 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import axios from "../../utils/axios"
 
-function Home() {
-    const [allEvents, setAllEvents] = useState([]);
+function Home(props) {
     const [searchQuery, setSearchQuery] = useState("");
+    const [allEvents, setAllEvents] = useState(props.allEvents);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:3001/events');
-                const data = response.data;
-                setAllEvents(data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
     
-        fetchData();
-    }, []);
 
     const filteredEvents = allEvents.filter((event) =>
         event.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -85,6 +73,28 @@ function Home() {
         </div>
     );
 }
+
+export async function getServerSideProps() {
+    try {
+      const response = await axios.get('http://localhost:3001/events');
+      const allEvents = response.data;
+  
+  
+      return {
+        props: {
+          allEvents,
+        },
+      };
+    } catch (error) {
+      console.error(error);
+      return {
+        props: {
+          allEvents: [],
+        },
+      };
+    }
+  }
+  
 
 
 

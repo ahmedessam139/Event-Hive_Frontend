@@ -28,11 +28,6 @@ function EventPage() {
                 if (response.status === 200) {
                     const data = response.data;
                     setEventData(data);
-                    setIsUserRegistered(
-                        data.participants.some(
-                            (participant) => participant.id === userId
-                        )
-                    );
                 } else {
                     throw new Error('Failed to fetch event data');
                 }

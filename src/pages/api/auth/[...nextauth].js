@@ -2,6 +2,7 @@ import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
 
+
 export default NextAuth({
     secret: process.env.NEXTAUTH_SECRET,
     providers: [
@@ -20,7 +21,7 @@ export default NextAuth({
                     .then((res) => {
                         const data = {
                             "id": 15,
-                            "role": "user",
+                            "role": "admin",
                             "username": "ahmedessam139ae",
                             "email": "kminchelle@qq.com",
                             "firstName": "Ahmed",
