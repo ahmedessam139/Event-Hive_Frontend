@@ -13,9 +13,6 @@ const cloudinary = new Cloudinary({
 });
 
 
-
-
-
 function AddEventForm() {
     const [imageUrl, setImageUrl] = useState();
     const [eventName, setEventName] = useState('');
@@ -26,12 +23,7 @@ function AddEventForm() {
     const [description, setDescription] = useState('');
     const [ticketTypes, setTicketTypes] = useState([
         {
-            name: '', price: '', limit: '', seated: false, seats: {
-                A: [0, 0, 0],
-                B: [0, 0, 0],
-                C: [0, 1, 0],
-                D: [0, 0, 0]
-            }
+            name: '', price: '', limit: '', seated: false, seats: {}
         },
     ]);
 
@@ -45,12 +37,7 @@ function AddEventForm() {
         setTicketTypes([
             ...ticketTypes,
             {
-                name: '', price: '', limit: '', seated: false, seats: {
-                    "A": [0, 0, 3],
-                    "B": [0, 0, 3],
-                    "C": [0, 0, 0],
-                    "D": [0, 0, 0]
-                }
+                name: '', price: '', limit: '', seated: false, seats: {}
             },
         ]);
     };
@@ -74,8 +61,6 @@ function AddEventForm() {
                 if (response.ok) {
                     const data = await response.json();
                     setImageUrl(data.secure_url);
-                    console.log('Image uploaded to Cloudinary');
-                    console.log(data.secure_url);
                 }
             } catch (error) {
                 console.error('Error uploading image to Cloudinary:', error);
