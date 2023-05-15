@@ -45,11 +45,13 @@ function SignUpForm({ }) {
             password
         })
         try {
-            const res = await axios.post('/api/auth/signup', {
-                fullName,
+            let names = fullName.split(" ");
+            const res = await axios.post('http://127.0.0.1:8000/api/user/signup', {
+                "firstname": names[0],
+                "lastname": names[1],
                 email,
                 username,
-                mobileNumber,
+                "phonenumber": mobileNumber,
                 gender,
                 password
             });
