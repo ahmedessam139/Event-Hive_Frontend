@@ -23,7 +23,11 @@ function AddEventForm() {
     const [description, setDescription] = useState('');
     const [ticketTypes, setTicketTypes] = useState([
         {
-            name: '', price: '', limit: '', seated: false, seats: {}
+            name: '', price: '', limit: '', seated: false, seats: {
+                A:[0,0,0],
+                B:[0,0,0],
+                C:[0,0,0]
+            }
         },
     ]);
 
@@ -37,7 +41,11 @@ function AddEventForm() {
         setTicketTypes([
             ...ticketTypes,
             {
-                name: '', price: '', limit: '', seated: false, seats: {}
+                name: '', price: '', limit: '', seated: false, seats: {
+                    A:[0,0,0],
+                    B:[0,0,0],
+                    C:[0,0,0]
+                }
             },
         ]);
     };
