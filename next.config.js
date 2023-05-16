@@ -1,19 +1,22 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
-};
-
-module.exports = {
+  };
+  
+  module.exports = {
+    ...nextConfig,
     images: {
-        remotePatterns: [
-            {
-                protocol: "https",
-                hostname: "**",
-            },
-            {
-                protocol: "http",
-                hostname: "**",
-            },
-        ],
+      remotePatterns: [
+        {
+          protocol: "https",
+          hostname: "**",
+        },
+        {
+          protocol: "http",
+          hostname: "**",
+        },
+      ],
     },
-};
+    pageExtensions: ["js"],
+    basePath: "",
+  };
+  
