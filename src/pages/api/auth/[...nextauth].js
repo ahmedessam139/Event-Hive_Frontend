@@ -14,23 +14,13 @@ export default NextAuth({
             },
             async authorize(credentials, req) {
                 const { username, password } = credentials;
-                const res = await axios.post('https://dummyjson.com/auth/login', {
+                const res = await axios.post('http://127.0.0.1:8000/api/user/login', {
                     username,
                     password
                 })
                     .then((res) => {
                         console.log(res);
-                        const data = {
-                            "id": 15,
-                            "role": "admin",
-                            "username": "ahmedessam139ae",
-                            "email": "kminchelle@qq.com",
-                            "firstName": "Ahmed",
-                            "lastName": "Essam",
-                            "mobileNumber": "0123456789",
-                            "gender": "male",
-                            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsInVzZXJuYW1lIjoia21pbmNoZWxsZSIsImVtYWlsIjoia21pbmNoZWxsZUBxcS5jb20iLCJmaXJzdE5hbWUiOiJKZWFubmUiLCJsYXN0TmFtZSI6IkhhbHZvcnNvbiIsImdlbmRlciI6ImZlbWFsZSIsImltYWdlIjoiaHR0cHM6Ly9yb2JvaGFzaC5vcmcvYXV0cXVpYXV0LnBuZz9zaXplPTUweDUwJnNldD1zZXQxIiwiaWF0IjoxNjM1NzczOTYyLCJleHAiOjE2MzU3Nzc1NjJ9.n9PQX8w8ocKo0dMCw3g8bKhjB8Wo7f7IONFBDqfxKhs"
-                        };
+                        const data = res.data;
                         return data;
                     })
                     .catch((err) => {
@@ -56,5 +46,4 @@ export default NextAuth({
     }
 
 })
-
 
