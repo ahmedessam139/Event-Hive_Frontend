@@ -21,6 +21,8 @@ export default NextAuth({
                         email: "kminchelle@qq.com",
                         role: "user",
                         firstName: "Jeanne",
+                        mobileNumber: "1234567890",
+                        gender:"male",
                         lastName: "Halvorson",
                         image: "https://robohash.org/autquiaut.png?size=50x50&set=set1",
                         token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsInVzZXJuYW1lIjoia21pbmNoZWxsZSIsImVtYWlsIjoia21pbmNoZWxsZUBxcS5jb20iLCJmaXJzdE5hbWUiOiJKZWFubmUiLCJsYXN0TmFtZSI6IkhhbHZvcnNvbiIsImdlbmRlciI6ImZlbWFsZSIsImltYWdlIjoiaHR0cHM6Ly9yb2JvaGFzaC5vcmcvYXV0cXVpYXV0LnBuZz9zaXplPTUweDUwJnNldD1zZXQxIiwiaWF0IjoxNjM1NzczOTYyLCJleHAiOjE2MzU3Nzc1NjJ9.n9PQX8w8ocKo0dMCw3g8bKhjB8Wo7f7IONFBDqfxKhs"
@@ -32,6 +34,8 @@ export default NextAuth({
                         id: 15,
                         username: "kminchelle",
                         email: "kminchelle@qq.com",
+                        mobileNumber: "1234567890",
+                        gender:"male",
                         role: "admin",
                         firstName: "Jeanne",
                         lastName: "Halvorson",

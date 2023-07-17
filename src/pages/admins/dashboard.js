@@ -13,9 +13,58 @@ import { useRouter } from "next/router";
 
 
 const Dashboard = () => {
-    const [counters, setCounters] = useState([]);
-    const [upcomingEvents, setUpcomingEvents] = useState([]);
-    const [pastEvents, setPastEvents] = useState([]);
+    const [counters, setCounters] = useState({
+        upcomingEvents: 30,
+        pastEvents: 103,
+        leftDaysforTheMembership: 356
+    });
+    const [upcomingEvents, setUpcomingEvents] = useState(
+        [
+            {
+              "event_id": 1,
+              "name": "هارلي",
+              "venue": "Masria Plaza Hall",
+              "date": "Every Friday",
+              "ticketType": "General",
+              "price": "49.99",
+              "status": "Paid",
+              "transactionId": "534sa35djkgfou"
+            },
+            {
+              "event_id": 2,
+              "name": "PopNation",
+              "venue": "Barclays Center",
+              "date": "2023-06-05",
+              "ticketType": "VIP",
+              "price": "29.99",
+              "status": "Pending",
+              "transactionId": "354563456dsf54"
+            }
+          ]
+
+    );
+    const [pastEvents, setPastEvents] = useState( [
+        {
+          "event_id": 1,
+          "name": "dsdsds",
+          "venue": "dsaddasd",
+          "date": "2016-06-05",
+          "ticketType": "General",
+          "price": "49.99",
+          "status": "Atended",
+          "transactionId": "534sa35djkgfou"
+        },
+        {
+          "event_id": 2,
+          "name": "PopNation",
+          "venue": "Barclays Center",
+          "date": "2023-06-05",
+          "ticketType": "VIP",
+          "price": "29.99",
+          "status": "Atended",
+          "transactionId": "354563456dsf54"
+        }
+      ]);
     // const [moderators, setmoderators] = useState([]);
 
     const {status , data } = useSession();
@@ -23,21 +72,7 @@ const Dashboard = () => {
    
 
     const dashboardData = async () => {
-        try {
-            const res = await axios.get("/api/dashboard/admin");
-            console.log(res.data);
-            console.log(res.data.counters);
-            console.log(res.data.upcomingEvents);
-            console.log(res.data.PastEvents);
-            setCounters(res.data.counters);
-            setUpcomingEvents(res.data.upcomingEvents);
-            setPastEvents(res.data.pastEvents);
-            // setmoderators(res.data.Moderators)
-            setLoading(false); // set loading to false when data is fetched
-        } catch (error) {
-            console.log(error);
-
-        }
+      //API call to get the data
 
     };
 

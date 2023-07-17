@@ -9,7 +9,7 @@ const EventCard = ({ event }) => {
     return (
         <div
             onClick={() => {
-                router.push(`/admins/event/${event.id}`);
+                router.push(`/admins/event/1`);
             }}
             className="hover:scale-105 cursor-pointer transition-all bg-[color:var(--white-color)] rounded-lg shadow-md"
             style={{
@@ -22,12 +22,12 @@ const EventCard = ({ event }) => {
             }}
         >
             <div style={{ flex: "1 0 auto", position: "relative" }}>
-                {event.img && (
+                {event.profile && (
                     <Image
-                        loader={() => event.img}
+                        loader={() => event.profile}
                         fill
                         className="object-cover h-full w-full rounded-md"
-                        src={event.img}
+                        src={event.profile}
                         alt=""
                         sizes="(min-width: 640px) 100vw, 50vw"
                         priority

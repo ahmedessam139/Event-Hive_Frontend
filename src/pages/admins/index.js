@@ -13,7 +13,32 @@ import axios from "../../utils/axios";
 
 const AdminsHome = () => {
 
-    const [allEvents, setAllEvents] = useState([]);
+    const [allEvents, setAllEvents] = useState([
+        {
+          "event_id": 1,
+          "name": "هارلي",
+          "venue": "Masria Plaza Hall",
+          "date": "Every Friday",
+          "price": "49.99",
+          "profile": "https://www.dostor.org/Upload/libfiles/406/2/253.jpg"
+        },
+        {
+          "event_id": 2,
+          "name": "PopNation",
+          "venue": "Barclays Center",
+          "date": "2023-06-05",
+          "price": "29.99",
+          "profile": "https://picsum.photos/id/238/400/300"
+        },
+        {
+          "event_id": 3,
+          "name": "CountryFest",
+          "venue": "Nissan Stadium",
+          "date": "2023-07-20",
+          "price": "39.99",
+          "profile": "https://picsum.photos/id/239/400/300"
+        }]
+        );
     const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {

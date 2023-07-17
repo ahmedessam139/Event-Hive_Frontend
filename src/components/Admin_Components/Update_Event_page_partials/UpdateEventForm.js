@@ -27,21 +27,42 @@ function UpdateEventForm({ eventId }) {
     const [venue, setVenue] = useState('');
     const [description, setDescription] = useState('');
     const [ticketTypes, setTicketTypes] = useState([]);
+
     useEffect(() => {
-        axios.get(`/api/event/${eventId}`)
-            .then(response => {
-                setEventName(response.data.name);
-                setCoverImage(response.data.cover);
-                let datetime = response.data.date.split('T');
-                setDate(datetime[0]);
-                setTime(datetime[1]);
-                setVenue(response.data.venue);
-                setDescription(response.data.description);
-                setTicketTypes(response.data.tickets);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+                setEventName("harly");
+                setCoverImage("https://res.cloudinary.com/dacn7ee03/image/upload/v1634173899/Events/1634173898550.jpg");
+                setDate("23-7");
+                setTime("12:00");
+                setVenue("Masria Plaza Hall");
+                setDescription("haxxx");
+                setTicketTypes([
+                    {
+                        name: 'General',
+                        price: '49.99',
+                        limit: '100',
+                        seated: false,
+                        seats: {
+                            "A": [0, 0, 3],
+                            "B": [0, 0, 3],
+                            "C": [0, 0, 0],
+                            "D": [0, 0, 0]
+                        }
+                    },
+                    {
+                        name: 'VIP',
+                        price: '99.99',
+                        limit: '50',
+                        seated: true,
+                        seats: {
+                            "A": [0, 0, 3],
+                            "B": [0, 0, 3],
+                            "C": [0, 0, 0],
+                            "D": [0, 0, 0]
+                        }
+                    },
+                ]);
+                
+           
     }, []);
 
 

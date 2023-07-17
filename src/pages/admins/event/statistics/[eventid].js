@@ -15,7 +15,92 @@ import axios from "../../../../utils/axios";
 
 const EventStatistics = () => {
 
-    const [eventData, setEventData] = useState(null);
+    const [eventData, setEventData] = useState({
+    
+        "name": "Example Event",
+        "cover": "https://www.dostor.org/Upload/libfiles/406/2/253.jpg",
+        "date": "2023-05-01",
+        "description": "هارلي هو حفل موسيقي يقام كل جمعة في مصريا بلازا هول",
+        "time": "10:00 AM",
+        "venue": "123 Main St, Anytown USA",
+        "organizer": "Example Organizer",
+        "Counters" : {
+          "totalTickets": 150,
+          "soldTickets": 100,
+          "revenue": 10000,
+          "checkedIn": 0,
+          "gateStaff": 5
+        },
+        "genderPercentage":{
+          "Total":20,
+          "General": 10,
+          "VIP": 40,
+          "VVIP": 50
+        },
+        "ticketsData":{
+          "Total":[100,120],
+          "General": [10,20],
+          "VIP": [40,50],
+          "VVIP": [50,50]
+        },
+        "tickets": [
+          {
+            "type": "General",
+            "price": 100,
+            "Available": true,
+            "Seated": true,
+            "seats": {
+              "A": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+              "B": [0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0],
+              "C": [0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0],
+              "D": [0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0],
+              "E": [3, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3]
+            }
+          },
+          {
+            "type": "VIP",
+            "price": 200,
+            "Available": false,
+            "Seated": true,
+            "seats": {
+              "A": [0, 0, 0],
+              "B": [0, 0, 0],
+              "C": [0, 0, 0],
+              "D": [0, 0, 0]
+            }
+          },
+          {
+            "type": "VVIP",
+            "price": 500,
+            "Available": true,
+            "Seated": false,
+            "seats": {}
+          }
+        ],
+        "attendees": [
+            {
+              "username": "user1",
+              "name": "John Doe",
+              "ticketType": "General",
+              "status": "pending",
+              "createdat": "2023-05-01"
+            },
+            {
+              "username": "user2",
+              "name": "Jane Doe",
+              "ticketType": "VIP",
+              "status": "pending",
+              "createdat": "2023-05-01"
+            },
+            {
+              "username": "user3",
+              "name": "John Doe",
+              "ticketType": "VVIP",
+              "status": "pending",
+              "createdat": "2023-05-01"
+            }
+          ]
+      });
 
     const router = useRouter();
 
@@ -24,21 +109,7 @@ const EventStatistics = () => {
 
 
     useEffect(() => {
-        async function fetchData() {
-            try {
-                const response = await axios.get(`/api/admin/event/statistics/${eventId}`);
-                if (response.status === 200) {
-                    const data = await response.data;
-                    console.log(data);
-                    setEventData(data);
-                } else {
-                    throw new Error("Failed to fetch event data");
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        fetchData();
+      //API call to get event data
 
     }, []);
 
