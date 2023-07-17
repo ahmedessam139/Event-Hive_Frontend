@@ -23,6 +23,7 @@ const EventCard = ({ event }) => {
             <div style={{ flex: "1 0 auto", position: "relative" }}>
                 {event.profile && (
                     <Image
+                        loader={() => event.profile}
                         fill
                         className="object-cover h-full w-full rounded-md"
                         src={event.profile}
@@ -40,12 +41,12 @@ const EventCard = ({ event }) => {
                             : event.name}
                     </p>
                     <p className="text-sm text-gray-800">{event.venue}</p>
-                    <p className="text-sm text-gray-800">{event.date}</p>
+                    <p className="text-sm text-gray-800">{event.date.split("T")[0]}</p>
                 </div>
                 <div className="flex flex-col justify-end">
                     <span className="w-full flex flex-row justify-end ">
                         <FaUsers />
-                        <span className="ml-2 text-sm">4,92</span>
+                        
                     </span>
                     <p className="text-sm text-gray-800 mt-2">
                         <strong className="whitespace-nowrap">Starts From {event.price}Egp</strong>

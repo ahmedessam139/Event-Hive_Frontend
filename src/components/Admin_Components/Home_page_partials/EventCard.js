@@ -9,7 +9,7 @@ const EventCard = ({ event }) => {
     return (
         <div
             onClick={() => {
-                router.push(`/admins/event/${event.event_id}`);
+                router.push(`/admins/event/${event.id}`);
             }}
             className="hover:scale-105 cursor-pointer transition-all bg-[color:var(--white-color)] rounded-lg shadow-md"
             style={{
@@ -22,11 +22,12 @@ const EventCard = ({ event }) => {
             }}
         >
             <div style={{ flex: "1 0 auto", position: "relative" }}>
-                {event.profile && (
+                {event.img && (
                     <Image
+                        loader={() => event.img}
                         fill
                         className="object-cover h-full w-full rounded-md"
-                        src={event.profile}
+                        src={event.img}
                         alt=""
                         sizes="(min-width: 640px) 100vw, 50vw"
                         priority
@@ -41,12 +42,11 @@ const EventCard = ({ event }) => {
                             : event.name}
                     </p>
                     <p className="text-sm text-gray-800">{event.venue}</p>
-                    <p className="text-sm text-gray-800">{event.date}</p>
+                    <p className="text-sm text-gray-800">{event.date.split("T")[0]}</p>
                 </div>
                 <div className="flex flex-col justify-end">
                     <span className="w-full flex flex-row justify-end ">
                         <FaUsers />
-                        <span className="ml-2 text-sm">4,92</span>
                     </span>
                     <p className="text-sm text-gray-800 mt-2">
                         <strong className="whitespace-nowrap">Starts From {event.price}Egp</strong>

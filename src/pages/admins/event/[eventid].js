@@ -4,6 +4,7 @@ import EventDescription from '../../../components/Admin_Components/Event_ID_part
 import Cover from '../../../components/Admin_Components/Event_ID_partials/Cover';
 import UserNavBar from "../../../components/Admin_Components/AdminNavBar";
 import Footer from "../../../components/FooterComponent";
+import LoadingComponent from "../../../components/LoadingComponent";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
@@ -12,7 +13,7 @@ import axios from "../../../utils/axios";
 
 function EventPage() {
   const router = useRouter();
-  const eventId = router.query.eventId;
+  const eventId = router.query.eventid;
   const [eventData, setEventData] = useState([]);
 
   // function to handle share button click
@@ -23,9 +24,10 @@ function EventPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:3001/eventid`);
+        const response = await axios.get(`/api/event/${eventId}`);
         if (response.status === 200) {
           const data = response.data;
+          data.id = eventId;
           setEventData(data);
           setIsUserRegistered(
             data.participants.some((participant) => participant.id === userId)
@@ -73,12 +75,12 @@ function EventPage() {
 
 
   if (!eventData || !eventData.cover)
-    return <div>loading...</div>;
+    return <LoadingComponent />;
   else
     return (
       <div className="bg-[color:var(--primary-color)]">
         <UserNavBar />
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center md:mx-5">
 
           <Cover eventData={eventData} />
 

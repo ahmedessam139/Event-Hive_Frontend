@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { FaTicketAlt, FaExclamationTriangle } from "react-icons/fa";
 import Seats from "./Seats";
+import axios from "axios";
 
 function BuyingBox({ eventData }) {
     const [event, setEvent] = useState(JSON.parse(eventData));
@@ -10,6 +11,7 @@ function BuyingBox({ eventData }) {
     const [counters, setCounters] = useState(event.tickets.map(() => 0));
     const [seats, setSeats] = useState(event.tickets.map(() => []));
     const { status, data } = useSession();
+    console.log(eventData);
 
     const handleIncrement = (index) => {
         setCounters((prevCounters) => {
@@ -53,33 +55,55 @@ function BuyingBox({ eventData }) {
         });
         setShowBooking(false);
     };
-    function handleCheckout() {
+
+    async function handleCheckout() {
         const selectedTickets = event.tickets;
 
-        
+        let ticketArr = []
 
         const ticketsJson = selectedTickets.map((ticket, index) => {
             const selectedSeats = seats[index];
             const Seated = ticket.Seated;
             const ticketCounter = counters[index];
+            
+            if (ticketCounter > 0) {
+                let productObj = {
+                    price_data: {
+                        unit_amount: ticket.price * 100, 
+                        currency: "egp",
+                        product_data: {
+                            name: `${ticket.name} tickets for ${event.name}`,
+                        }
+                    },
+                    quantity: ticketCounter
+                };
+    
+                ticketArr.push(productObj);  
+            }          
 
             return {
-                ticket_type: ticket.type,
+                ticket_type: ticket.name,
                 Seated: Seated,
                 count: ticketCounter,
                 seats: selectedSeats,
             };
         });
 
-        const data = {
-            event: {
-                name: event.name,
-            },
-            tickets: ticketsJson,
+        const payload = {
+            eventid: event.id,
+            tickets: JSON.stringify(ticketsJson),
+            token: data.user.token
         };
 
-        console.log(data);
-        // Send the data to the server using fetch() or a library like axios()
+        console.log(ticketArr)
+
+        let lineItems = {
+            lineItems: ticketArr,
+            metadata: payload
+        };
+
+        const res = await axios.post("/api/checkout", lineItems);
+        window.location.href = res.data.session.url;
     }
 
 
@@ -98,7 +122,7 @@ function BuyingBox({ eventData }) {
             </h3>
             <ul className="text-gray-600">
                 {event.tickets.map((item, index) => {
-                    if (item.Available && !item.Seated) {
+                    if (item.Available && !item.seated) {
                         return (
                             <li
                                 key={index}
@@ -106,7 +130,7 @@ function BuyingBox({ eventData }) {
                             >
                                 <div className="flex items-center gap-2 col-span-1">
                                     <FaTicketAlt className="text-[color:var(--darker-secondary-color)] text-2xl" />
-                                    <span>{item.type}</span>
+                                    <span>{item.name}</span>
                                 </div>
                                 <div className="col-span-1 flex items-center justify-center gap-2">
                                     <button
@@ -137,14 +161,14 @@ function BuyingBox({ eventData }) {
                             >
                                 <div className="flex items-center gap-2 col-span-1">
                                     <FaTicketAlt className="text-[color:var(--darker-secondary-color)] text-2xl" />
-                                    <span>{item.type}</span>
+                                    <span>{item.name}</span>
                                 </div>
                                 <span className="text-center text-bold text-xl text-[color:var(--darker-secondary-color)] col-span-1">
                                     [Sold Out]
                                 </span>
                             </li>
                         );
-                    } else if (item.Available && item.Seated) {
+                    } else if (item.Available && item.seated) {
                         return (
                             <li
                                 key={index}
@@ -152,7 +176,7 @@ function BuyingBox({ eventData }) {
                             >
                                 <div className="flex items-center gap-2 col-span-1">
                                     <FaTicketAlt className="text-[color:var(--darker-secondary-color)] text-2xl" />
-                                    <span>{item.type}</span>
+                                    <span>{item.name}</span>
                                 </div>
                                 <button className="px-6 py-2 bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] text-white rounded focus:outline-none" onClick={() => switchToBookings(index)}>
                                     Seats

@@ -8,9 +8,14 @@ import BuyingBox from './BuyingBox';
 function EventDataContainer({ eventData }) {
     const [isOpen, setIsOpen] = useState(false);
     const [eventData_string, setEventData_string] = useState("");
+
+    const handleShare = () => {
+        
+        //take the event link and share it
+
     
-
-
+    };
+    
     const togglePopup = () => {
         setIsOpen(!isOpen);
     };
@@ -23,9 +28,7 @@ function EventDataContainer({ eventData }) {
         setEventData_string(JSON.stringify(eventData));
         console.log(eventData_string);
     }, []);
-
     
-
     return (
         <div className="container bg-white py-4 mt-4 rounded-lg shadow-md">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -39,13 +42,13 @@ function EventDataContainer({ eventData }) {
                                 <span className="font-bold">
                                     Date:
                                 </span>{" "}
-                                {eventData.date}
+                                {eventData.date.split("T")[0]}
                             </div>
                             <div className="text-md text-gray-800 mr-4">
                                 <span className="font-bold">
                                     Time:
                                 </span>{" "}
-                                {eventData.time}
+                                {eventData.date.split("T")[1]}
                             </div>
                             <div className="text-md text-gray-800 mr-4">
                                 <span className="font-bold">

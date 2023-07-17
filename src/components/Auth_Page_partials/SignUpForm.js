@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react';
 import LoadingComponent from '../LoadingComponent';
 
 
+
 function SignUpForm({ }) {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
@@ -46,15 +47,20 @@ function SignUpForm({ }) {
         })
         try {
             let names = fullName.split(" ");
+        
+            const firstName = names[0];
+            const lastName = names.length > 1 ? names[1] : "";
+        
             const res = await axios.post('/api/user/signup', {
-                "firstname": names[0],
-                "lastname": names[1],
+                "firstname": firstName,
+                "lastname": lastName,
                 email,
                 username,
                 "phonenumber": mobileNumber,
                 gender,
                 password
             });
+        
             if (res.error) {
                 error(res.error);
                 setError(res.error);

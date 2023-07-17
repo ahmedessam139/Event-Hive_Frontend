@@ -14,18 +14,48 @@ export default NextAuth({
             },
             async authorize(credentials, req) {
                 const { username, password } = credentials;
-                const res = await axios.post('http://34.125.23.115:8000/api/user/login', {
-                    username,
-                    password
-                })
-                    .then((res) => {
-                        console.log(res);
-                        const data = res.data;
-                        return data;
-                    })
-                    .catch((err) => {
-                        throw new Error(err.response.data.detail)
-                    });
+                if (username === password && username === "user") {
+                    const testResponse = {
+                        id: 15,
+                        username: "kminchelle",
+                        email: "kminchelle@qq.com",
+                        role: "user",
+                        firstName: "Jeanne",
+                        lastName: "Halvorson",
+                        image: "https://robohash.org/autquiaut.png?size=50x50&set=set1",
+                        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsInVzZXJuYW1lIjoia21pbmNoZWxsZSIsImVtYWlsIjoia21pbmNoZWxsZUBxcS5jb20iLCJmaXJzdE5hbWUiOiJKZWFubmUiLCJsYXN0TmFtZSI6IkhhbHZvcnNvbiIsImdlbmRlciI6ImZlbWFsZSIsImltYWdlIjoiaHR0cHM6Ly9yb2JvaGFzaC5vcmcvYXV0cXVpYXV0LnBuZz9zaXplPTUweDUwJnNldD1zZXQxIiwiaWF0IjoxNjM1NzczOTYyLCJleHAiOjE2MzU3Nzc1NjJ9.n9PQX8w8ocKo0dMCw3g8bKhjB8Wo7f7IONFBDqfxKhs"
+                    };
+                    return testResponse;
+                }
+                if (username === password && username === "admin") {
+                    const testResponse = {
+                        id: 15,
+                        username: "kminchelle",
+                        email: "kminchelle@qq.com",
+                        role: "admin",
+                        firstName: "Jeanne",
+                        lastName: "Halvorson",
+                        image: "https://robohash.org/autquiaut.png?size=50x50&set=set1",
+                        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsInVzZXJuYW1lIjoia21pbmNoZWxsZSIsImVtYWlsIjoia21pbmNoZWxsZUBxcS5jb20iLCJmaXJzdE5hbWUiOiJKZWFubmUiLCJsYXN0TmFtZSI6IkhhbHZvcnNvbiIsImdlbmRlciI6ImZlbWFsZSIsImltYWdlIjoiaHR0cHM6Ly9yb2JvaGFzaC5vcmcvYXV0cXVpYXV0LnBuZz9zaXplPTUweDUwJnNldD1zZXQxIiwiaWF0IjoxNjM1NzczOTYyLCJleHAiOjE2MzU3Nzc1NjJ9.n9PQX8w8ocKo0dMCw3g8bKhjB8Wo7f7IONFBDqfxKhs"
+                    };
+                    return testResponse;
+                }
+                
+                // put logic here to check credentials
+
+                // const res = await axios.post('', {
+                //     username,
+                //     password
+                // })
+                //     .then((res) => {
+                //         console.log(res);
+                //         const data = res.data;
+                //         return data;
+                //     })
+                //     .catch((err) => {
+                //         throw new Error(err.response.data.detail)
+                //     });
+            
                 return res;
             }
 

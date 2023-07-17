@@ -26,7 +26,8 @@ function EventPage() {
             try {
                 const response = await axios.get(`/api/event/${eventId}`);
                 if (response.status === 200) {
-                    const data = response.data[0];
+                    const data = response.data;
+                    data.id = eventId;
                     setEventData(data);
                 } else {
                     throw new Error('Failed to fetch event data');
@@ -64,12 +65,12 @@ function EventPage() {
 
 
     if (!eventData || !eventData.cover)
-        return <div>ddddd</div>;
+        return <LoadingComponent />;
     else
         return (
             <div className="bg-[color:var(--primary-color)]">
                 <UserNavBar />
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center md:mx-5">
 
                     {/* Top div with image */}
                     <Cover eventData={eventData} />
