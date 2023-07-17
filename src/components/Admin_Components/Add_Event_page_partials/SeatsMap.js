@@ -45,7 +45,7 @@ const SeatsMap = ({ _seats, _setSeats, _index, _togglePopUp }) => {
   const handleNumColsChange = (event) => {
     if (event.target.value == "") {
       event.target.value = 0;
-    }  
+    }
     const newNumCols = parseInt(event.target.value);
     setNumCols(newNumCols);
     setSeats((prevSeats) => {
@@ -58,7 +58,7 @@ const SeatsMap = ({ _seats, _setSeats, _index, _togglePopUp }) => {
       });
       return newSeats;
     });
-  
+
   };
 
   const countRowsAndCols = () => {
@@ -110,8 +110,10 @@ const SeatsMap = ({ _seats, _setSeats, _index, _togglePopUp }) => {
             className="border border-gray-500 p-2 rounded-lg"
           />
         </div>
+        <p className="mb-4 text-gray-500">click on seat to make it unavailable</p>
+        
         <div className="overflow-auto max-w-full max-h-[500px] inline-block" >
-        <table className="border-collapse min-w-10 inline-block">
+          <table className="border-collapse min-w-10 inline-block">
             <tbody className="mx-auto" style={{ transform: `scale(${zoom})`, transformOrigin: 'top center' }}>
               {Object.keys(seats).map((row) => (
                 <tr key={row}>

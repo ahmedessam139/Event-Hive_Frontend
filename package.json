@@ -42,6 +42,7 @@
     "reactjs-popup": "^2.0.5",
     "redux": "^4.2.1",
     "tw-elements": "^1.0.0-beta2",
+    "typewriter-effect": "^2.20.1",
     "universal-cookie": "^4.0.4"
   },
   "devDependencies": {

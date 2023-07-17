@@ -18,9 +18,9 @@ const cloudinary = new Cloudinary({
 
 function AddEventForm() {
     const router = useRouter();
-    const [imageUrl, setImageUrl] = useState();
+    const [imageUrl, setImageUrl] = useState(null);
     const [eventName, setEventName] = useState('');
-    const [coverImage, setCoverImage] = useState();
+    const [coverImage, setCoverImage] = useState(null);
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [venue, setVenue] = useState('');
@@ -55,34 +55,7 @@ function AddEventForm() {
     };
 
 
-    useEffect(() => {
-        async function uploadToCloudinary(file) {
-            try {
-                const formData = new FormData();
-                formData.append('file', file);
-                formData.append('upload_preset', 'tjsdpw0w');
-
-                const response = await fetch(
-                    `https://api.cloudinary.com/v1_1/${cloudinary.config().cloud_name}/image/upload`,
-                    {
-                        method: 'POST',
-                        body: formData,
-                    }
-                );
-
-                if (response.ok) {
-                    const data = await response.json();
-                    setImageUrl(data.secure_url);
-                }
-            } catch (error) {
-                console.error('Error uploading image to Cloudinary:', error);
-            }
-        }
-
-        if (coverImage) {
-            uploadToCloudinary(coverImage);
-        }
-    }, [coverImage]);
+    
 
 
     const handleRemoveTicketType = (index) => {
