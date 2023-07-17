@@ -3,7 +3,8 @@ import { getSessionToken } from './sessionStorage';
 import { signOut } from 'next-auth/react';
 
 const instance = axios.create({
-  baseURL: 'https://2cd7-197-54-218-22.ngrok-free.app',
+  //add your base url here
+  baseURL: '',
 });
 
 // Add a custom header to every request

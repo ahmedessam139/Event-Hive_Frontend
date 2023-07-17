@@ -22,22 +22,65 @@ function EventPage() {
     };
 
     useEffect(() => {
-        async function fetchData() {
-            try {
-                const response = await axios.get(`/api/event/${eventId}`);
-                if (response.status === 200) {
-                    const data = response.data;
-                    data.id = eventId;
-                    setEventData(data);
-                } else {
-                    throw new Error('Failed to fetch event data');
+        setEventData( {
+            "name": "Example Event",
+            "cover": "https://www.dostor.org/Upload/libfiles/406/2/253.jpg",
+            "date": "2023-05-01",
+            "description": "هارلي هو حفل موسيقي يقام كل جمعة في مصريا بلازا هول",
+            "time": "10:00 AM",
+            "venue": "123 Main St, Anytown USA",
+            "organizer": "Example Organizer",
+            "participants": [
+              {
+                "id": "123",
+                "name": "John Doe"
+              },
+              {
+                "id": "456",
+                "name": "Jane Smith"
+              }
+            ],
+            "tickets": [
+              {
+                "type": "General",
+                "price": 100,
+                "Available": true,
+                "seated": true,
+                "seats": {
+                  "A": [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                  "B": [0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 1, 1],
+                  "C": [0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0],
+                  "D": [0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0],
+                  "E": [3, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3]
                 }
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-        fetchData();
+              },
+              {
+                "type": "VIP",
+                "price": 200,
+                "Available": false,
+                "Seated": true,
+                "seats": {
+                  "A": [0, 0, 0],
+                  "B": [0, 0, 0],
+                  "C": [0, 0, 0],
+                  "D": [0, 0, 0]
+                }
+              },
+              {
+                "type": "VVIP",
+                "price": 500,
+                "Available": true,
+                "Seated": false,
+                "seats": {
+                  "A": [0, 0, 0, 0, 0, 0, 0, 0],
+                  "B": [0, 0, 3, 0, 0, 0, 0, 0],
+                  "C": [0, 0, 3, 0, 0, 0, 0, 0],
+                  "D": [0, 0, 3, 0, 0, 0, 0, 0],
+                  "L": [3, 0, 0, 0, 0, 0, 3, 3]
+                }
+              }
+            ]
+          });
     }, []);
 
     const { status, data } = useSession();

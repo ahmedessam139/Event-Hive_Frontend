@@ -10,26 +10,60 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { FaCog } from "react-icons/fa";
 const Dashboard = () => {
-    const [counters, setCounters] = useState([]);
-    const [upcomingEvents, setUpcomingEvents] = useState([]);
-    const [pastEvents, setPastEvents] = useState([]);
+    const [counters, setCounters] = useState({
+        "upcomingEvents": 10,
+        "joinedEvents": 20,
+        "membershipSince": "4 Years"
+      });
+    const [upcomingEvents, setUpcomingEvents] = useState([
+        {
+          "event_id": 1,
+          "name": "هارلي",
+          "venue": "Masria Plaza Hall",
+          "date": "Every Friday",
+          "ticketType": "General",
+          "price": "49.99",
+          "status": "Paid",
+          "transactionId": "534sa35djkgfou"
+        },
+        {
+          "event_id": 2,
+          "name": "PopNation",
+          "venue": "Barclays Center",
+          "date": "2023-06-05",
+          "ticketType": "VIP",
+          "price": "29.99",
+          "status": "Pending",
+          "transactionId": "354563456dsf54"
+        }
+      ]);
+    const [pastEvents, setPastEvents] = useState( [
+        {
+          "event_id": 1,
+          "name": "dsdsds",
+          "venue": "dsaddasd",
+          "date": "2016-06-05",
+          "ticketType": "General",
+          "price": "49.99",
+          "status": "Atended",
+          "transactionId": "534sa35djkgfou"
+        },
+        {
+          "event_id": 2,
+          "name": "PopNation",
+          "venue": "Barclays Center",
+          "date": "2023-06-05",
+          "ticketType": "VIP",
+          "price": "29.99",
+          "status": "Atended",
+          "transactionId": "354563456dsf54"
+        }
+      ]);
 
 
 
     const dashboardData = async () => {
-        try {
-            const res = await axios.get("/api/dashboard");
-            console.log(res.data);
-            console.log(res.data.counters);
-            console.log(res.data.upcomingEvents);
-            console.log(res.data.history);
-            setCounters(res.data.counters);
-            setUpcomingEvents(res.data.upcomingEvents);
-            setPastEvents(res.data.history);
-        } catch (error) {
-            console.log(error);
-
-        }
+       //Put your API call here
 
     };
 

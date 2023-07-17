@@ -18,17 +18,8 @@ const AdminsHome = () => {
 
     useEffect(() => {
 
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('/api/event/app');
-                const data = response.data;
-                setAllEvents(data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-    
-        fetchData();
+       //API call to get all events
+       
     }, []);
 
     const filteredEvents = allEvents.filter((event) =>

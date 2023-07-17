@@ -21,13 +21,21 @@ const Partners = () => {
   };
 
   useEffect(() => {
-    axios.get('/api/partner')
-      .then(response => {
-        setPartnersData(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    //Add axios call to get all partners
+    setPartnersData([
+      {
+        "name": "هارلي",
+        "img": "https://www.dostor.org/Upload/libfiles/406/2/253.jpg"
+      },
+      {
+        "name": "PopNation",
+        "img": "https://picsum.photos/id/238/400/300"
+      },
+      {
+        "name": "CountryFest",
+        "img": "https://picsum.photos/id/239/400/300"
+      }
+    ]);
   }, []);
 
   useEffect(() => {
