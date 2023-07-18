@@ -39,27 +39,7 @@ function UpdateForm({ }) {
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const res = await axios.post('/api/auth/update-profile', {
-                firstName,
-                lastName,
-                email,
-                mobileNumber,
-                gender,
-                password
-            });
-            if (res.error) {
-                error(res.error);
-                setError(res.error);
-            } else {
-                // handle success case
-            }
-        }
-        catch (error) {
-            console.log(error);
-            setError("UnHandeled Error");
-        }
+      e.preventDefault();
     }
     if (status != "authenticated" || data.user === null) return (
         <div className="flex justify-center w-full">

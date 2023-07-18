@@ -10,11 +10,6 @@ import { useRouter } from "next/router";
 import { Cloudinary } from 'cloudinary-core';
 
 
-const cloudinary = new Cloudinary({
-    cloud_name: "dacn7ee03",
-    api_key: "642655988859922",
-    api_secret: "aPbCxTG4eqzCJd-hNyWnb9Q_wdQ"
-});
 
 
 function UpdateEventForm({ eventId }) {
@@ -89,34 +84,7 @@ function UpdateEventForm({ eventId }) {
         ]);
     };
 
-    useEffect(() => {
-        async function uploadToCloudinary(file) {
-            try {
-                const formData = new FormData();
-                formData.append('file', file);
-                formData.append('upload_preset', 'tjsdpw0w');
-
-                const response = await fetch(
-                    `https://api.cloudinary.com/v1_1/${cloudinary.config().cloud_name}/image/upload`,
-                    {
-                        method: 'POST',
-                        body: formData,
-                    }
-                );
-
-                if (response.ok) {
-                    const data = await response.json();
-                    setImageUrl(data.secure_url);
-                }
-            } catch (error) {
-                console.error('Error uploading image to Cloudinary:', error);
-            }
-        }
-
-        if (coverImage) {
-            uploadToCloudinary(coverImage);
-        }
-    }, [coverImage]);
+        
 
     const handleRemoveTicketType = (index) => {
         const updatedTicketTypes = [...ticketTypes];
@@ -147,35 +115,6 @@ function UpdateEventForm({ eventId }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        let capacity = 0;
-        for (let ticket in ticketTypes) {
-            ticketTypes[ticket].price = parseFloat(ticketTypes[ticket].price)
-            capacity += ticketTypes[ticket].limit;            
-        }
-
-        const formData = {
-            "name": eventName,
-            "profile": imageUrl,
-            date,
-            time,
-            venue,
-            capacity,
-            description,
-            ticketTypes,
-        };
-
-        console.log(JSON.stringify(formData))
-
-        axios.put(`/api/admin/event/${eventId}`, formData)
-        router.push('/admins')
-    };
-
-    if (ticketTypes.length === 0) {
-        return (
-            <div className="flex flex-wrap -mx-2">
-             <LoadingComponent />
-            </div>
-        );
     }
 
     return (

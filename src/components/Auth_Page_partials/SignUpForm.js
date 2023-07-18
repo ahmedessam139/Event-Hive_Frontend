@@ -34,45 +34,7 @@ function SignUpForm({ }) {
     }, [status]);
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log("submitting");
-        console.log({
-            fullName,
-            email,
-            username,
-            mobileNumber,
-            gender,
-            password
-        })
-        try {
-            let names = fullName.split(" ");
-        
-            const firstName = names[0];
-            const lastName = names.length > 1 ? names[1] : "";
-        
-            const res = await axios.post('/api/user/signup', {
-                "firstname": firstName,
-                "lastname": lastName,
-                email,
-                username,
-                "phonenumber": mobileNumber,
-                gender,
-                password
-            });
-        
-            if (res.error) {
-                error(res.error);
-                setError(res.error);
-            } else {
-                router.push('/auth/signin');
-            }
-        }
-        catch (error) {
-            console.log(error);
-            setError("UnHandeled Error");
-        }
-    }
+    const handleSubmit = async (e) => {}
 
 
     if (status === "authenticated" || status === "Loading") {
