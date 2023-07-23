@@ -135,6 +135,7 @@ function BuyingBox({ eventData }) {
                                 <div className="col-span-1 flex items-center justify-center gap-2">
                                     <button
                                         className="bg-gray-400 rounded-full text-white px-2 py-1 "
+                                        id={`decrement-${index}`}
                                         onClick={() => handleDecrement(index)}
                                     >
                                         -
@@ -142,6 +143,7 @@ function BuyingBox({ eventData }) {
                                     <span className="px-2 py-1">{counters[index]}</span>
                                     <button
                                         className="bg-gray-400 rounded-full text-white px-2 py-1 "
+                                        id={`increment-${index}`}
                                         onClick={() => handleIncrement(index)}
                                     >
                                         +
