@@ -67,7 +67,8 @@ function EventDataContainer({ eventData }) {
                     <div className="text-left lg:text-right mt-4 lg:mt-0">
                         <button
                             onClick={togglePopup}
-                            className="px-6 py-2 bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] text-white rounded focus:outline-none">
+                            className="px-6 py-2 bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] text-white rounded focus:outline-none"
+                                id="buy-button">
                             Buy Tickets
                         </button>
                     </div>
