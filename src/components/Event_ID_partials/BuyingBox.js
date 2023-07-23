@@ -161,7 +161,7 @@ function BuyingBox({ eventData }) {
                             >
                                 <div className="flex items-center gap-2 col-span-1">
                                     <FaTicketAlt className="text-[color:var(--darker-secondary-color)] text-2xl" />
-                                    <span>{item.name}</span>
+                                    <span>{item.type}</span>
                                 </div>
                                 <span className="text-center text-bold text-xl text-[color:var(--darker-secondary-color)] col-span-1">
                                     [Sold Out]
@@ -176,7 +176,7 @@ function BuyingBox({ eventData }) {
                             >
                                 <div className="flex items-center gap-2 col-span-1">
                                     <FaTicketAlt className="text-[color:var(--darker-secondary-color)] text-2xl" />
-                                    <span>{item.name}</span>
+                                    <span>{item.type}</span>
                                 </div>
                                 <button className="px-6 py-2 bg-[color:var(--darker-secondary-color)] hover:bg-[color:var(--secondary-color)] text-white rounded focus:outline-none" onClick={() => switchToBookings(index)}>
                                     Seats
