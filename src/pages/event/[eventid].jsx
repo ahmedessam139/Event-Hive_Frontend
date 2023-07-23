@@ -23,8 +23,8 @@ function EventPage() {
 
     useEffect(() => {
         setEventData( {
-            "name": "Example Event",
-            "cover": "https://www.dostor.org/Upload/libfiles/406/2/253.jpg",
+            "name": "ٌRise up summit",
+            "cover": "https://th.bing.com/th/id/OIP.Wn99xvlHj9TKQE6hPuPKBwHaDF?pid=ImgDet&w=3791&h=1577&rs=1",
             "date": "2023-05-01",
             "description": "هارلي هو حفل موسيقي يقام كل جمعة في مصريا بلازا هول",
             "time": "10:00 AM",
