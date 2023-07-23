@@ -130,7 +130,7 @@ function BuyingBox({ eventData }) {
                             >
                                 <div className="flex items-center gap-2 col-span-1">
                                     <FaTicketAlt className="text-[color:var(--darker-secondary-color)] text-2xl" />
-                                    <span>{item.name}</span>
+                                    <span>{item.type}</span>
                                 </div>
                                 <div className="col-span-1 flex items-center justify-center gap-2">
                                     <button
