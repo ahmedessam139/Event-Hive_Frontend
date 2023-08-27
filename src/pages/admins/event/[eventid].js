@@ -15,10 +15,10 @@ function EventPage() {
   const router = useRouter();
   const eventId = router.query.eventid;
   const [eventData, setEventData] = useState({
-    "name": "Example Event",
-    "cover": "https://www.dostor.org/Upload/libfiles/406/2/253.jpg",
-    "date": "2023-05-01",
-    "description": "هارلي هو حفل موسيقي يقام كل جمعة في مصريا بلازا هول",
+    "name": "ٌGlobal Village",
+    "cover": "https://i.ibb.co/hsHTWjN/1693156855046.jpg",
+    "date": "2023-07-14",
+    "description": "Global Village is the biggest celebration of cultures from around the world.! Global Village encourages social sustainability, world awareness, and cultural understanding. People showcased their nations through singing, dancing, food, customs, costumes, music and tradition",
     "time": "10:00 AM",
     "venue": "123 Main St, Anytown USA",
     "organizer": "Example Organizer",
@@ -80,7 +80,7 @@ function EventPage() {
   };
 
   useEffect(() => {
-  //API call to get event data
+    //API call to get event data
   }, []);
 
   const { status, data } = useSession();

@@ -15,12 +15,12 @@ const AdminsHome = () => {
 
     const [allEvents, setAllEvents] = useState([
         {
-          "event_id": 1,
-          "name": "هارلي",
-          "venue": "Masria Plaza Hall",
-          "date": "Every Friday",
-          "price": "49.99",
-          "profile": "https://www.dostor.org/Upload/libfiles/406/2/253.jpg"
+            "event_id": 1,
+            "name": "Global Village",
+            "venue": "Heliopolis University",
+            "date": "2023-07-12",
+            "price": "200",
+            "profile": "https://i.ibb.co/hsHTWjN/1693156855046.jpg"
         },
         {
           "event_id": 2,
