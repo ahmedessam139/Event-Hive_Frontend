@@ -24,8 +24,8 @@ const Partners = () => {
     //Add axios call to get all partners
     setPartnersData([
       {
-        "name": "هارلي",
-        "img": "https://www.dostor.org/Upload/libfiles/406/2/253.jpg"
+        "name": "Aisec",
+        "img": "https://picsum.photos/id/242/400/300"
       },
       {
         "name": "PopNation",

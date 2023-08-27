@@ -21,7 +21,7 @@ function Home() {
         setAllEvents([
             {
                 "event_id": 1,
-                "name": "هارلي",
+                "name": "Global Village",
                 "venue": "Masria Plaza Hall",
                 "date": "Every Friday",
                 "price": "49.99",
