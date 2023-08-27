@@ -6,7 +6,7 @@ import Footer from "../../components/FooterComponent";
 export default function SignIn() {
   const adminTestModeMessage = 'To enter test mode as an admin, please login with the username "admin" and password "admin".';
   const userTestModeMessage = 'To enter test mode as a user, please login with the username "user" and password "user".';
-  
+
   return (
     <>
       <div className="flex justify-center bg-[color:var(--primary-color)] w-[100%] ">
@@ -16,12 +16,12 @@ export default function SignIn() {
           </ContainerAndLogo>
         </div>
       </div>
-      <div className="fixed bottom-8 right-8 bg-gray-900 text-white px-4 py-2 rounded-lg shadow-lg">
+      <div className="fixed bottom-0 md:bottom-8 right-8 bg-gray-900 text-white px-4 py-2 rounded-lg shadow-lg">
         <p>{adminTestModeMessage}</p>
-        </div>
+      </div>
       <div className="fixed bottom-20 right-8 bg-gray-900 text-white px-4 py-2 rounded-lg shadow-lg">
-      <p>{userTestModeMessage}</p>
-        </div>
+        <p>{userTestModeMessage}</p>
+      </div>
       <Footer />
     </>
   );
