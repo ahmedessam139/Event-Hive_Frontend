@@ -36,11 +36,7 @@ export default function App({ Component, pageProps }) {
             </Head>
             <SessionProvider session={pageProps.session}>
                 <Component {...pageProps} />
-                {!isSignInPage && (
-                    <div className="fixed bottom-8 right-8 bg-gray-900 text-white px-4 py-2 rounded-lg shadow-lg">
-                        <p>This site is in the development phase. You can explore it without registration or data collection, just SignIn ✌️</p>
-                    </div>
-                )}
+                
             </SessionProvider>
         </>
     );
