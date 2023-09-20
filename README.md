@@ -1,94 +1,27 @@
-
-
-![Event Hive Logo](/public/favicon_io/eventhive-logo.svg)
-<br>
-<br>
-
-
-
-# Event Hive
-
-
-
-Fronten part of web application for Event-hive Project for 
-Event management system for event organizers and attendees.
-contact me for more info about the project.
-
----
-
-## Demo
-
-Check out the live demo [Here](https://event-hive-three.vercel.app/).
-
----
-
-## Screenshots
-
-![Landing page](/public/screenShots/langingPage.jpg)
-<br>
+<p align="center"> <h1 align="center"> Ahmed Essam </h1> </p>
+<p align="center"> <h3 align="center"> CSE Fresh Graduate </h3> </p>
+<p align="center" margin="20px">
+<a href="https://github.com/ahmedessam139" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg" alt="Ahmed Essam" height="20" width="20" /></a>
+<a href="https://twitter.com/ahmedessam139" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/twitter.svg" alt="Ahmed Essam" height="20" width="20" /></a>
+<a href="https://www.linkedin.com/in/ahmed-essam-390b29229/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/blogger.svg" alt="Ahmed Essam" height="20" width="20" /></a>
+</p>
 <br>
 
-![Home Page ](/public/screenShots/Home.jpg)
+I'm Ahmed Essam Khalil,CSE fresh graduate from Zagazig University. I specialize in web development, with a focus on frontend design and user experience. I also have a strong knowledge of backend development. Additionally, I have passion in RPA (Robotic Process Automation) and low-code development world.
 <br>
 <br>
-
-![Event Page](/public/screenShots/eventUserpage.jpg)
+Highly adaptable team player/leader with strong strategic planning abilities, quick learning aptitude, and a proven track record of effectively applying knowledge.
 <br>
 <br>
+📌 I’m currently working on devloping RPA tool and its orchestrator (Studio & orc like Uipath )
 
-![Cart PopUp1](/public/screenShots/Buy_Popup1.jpg)
-<br>
-<br>
+📌 I created an Event Management System for student activities within my faculty and am currently engaged in its ongoing development.
 
-![Cart PopUp2](/public/screenShots/Buy_Popup2.jpg)
-<br>
-<br>
- 
-![Add Event Admin](/public/screenShots/adminAdd_event.jpg)
-<br>
-<br>
+📌 Always looking for an opportunity to develop my skills and thinking
 
-![Admin Seats Editor](/public/screenShots/seatsEditor.jpg)
-<br>
-<br>
+📫 reach me:
 
-![Event Stat](/public/screenShots/adminEventStat.jpg)
-<br>
-<br>
-
-![Event Attendees](/public/screenShots/eventAttendees.jpg)
-
-## built with
-1. Next.js
-2. tailwindcss
-3. mui material-ui
-4. react chart.js
-
-
-## Installation
-
-Follow these steps to get the project up and running on your local machine:
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/ahmedessam139/Event-Hive_Frontend.git
-    ```
-2. Install the dependencies:
-
-   ```bash
-   npm install
-   ```
-3. Start the development server:
-
-   ```bash
-    npm run dev
-    ```
-4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
----
-
-## Contributing
-
-Contributions are always welcome!   
+- [LinkedIn](https://www.linkedin.com/in/ahmed-essam-390b29229/)
+- [Twitter](https://twitter.com/ahmedessam139)
+- [mail](ahmedessam139ae@gmail.com)
 
